@@ -1,51 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import instaLogo from "../../assets/instagram-1.svg";
 import "../../styles/Nav.css";
-import HomeIcon from "@mui/icons-material/Home";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import ExploreIcon from "@mui/icons-material/Explore";
-import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import MessageIcon from "@mui/icons-material/Message";
-import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import HomeIcon from "@mui/icons-material/HomeOutlined";
+import HomeSelectedIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/SearchOutlined";
+import SearchSelectedIcon from "@mui/icons-material/Search";
+import ExploreIcon from "@mui/icons-material/ExploreOutlined";
+import ExploreSelectedIcon from "@mui/icons-material/Explore";
+import MessageIcon from "@mui/icons-material/MessageOutlined";
+import MessageSelectedIcon from "@mui/icons-material/Message";
+import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteSelectedIcon from "@mui/icons-material/Favorite";
+import AddBoxIcon from "@mui/icons-material/AddBoxOutlined";
+import AddBoxSelectedIcon from "@mui/icons-material/AddBox";
+import NavItem from "../../components/NavItem";
 
 const Nav = () => {
+  const [selectedItem, setSelectedItem] = useState("Home");
+  const [hoveredItem, setHoveredItem] = useState(null);
+
   const fontStyle = {
-    fontSize: 30,
+    fontSize: hoveredItem === selectedItem ? 35 : 30,
   };
 
   return (
     <div className="nav-container">
       <img src={instaLogo} alt="Instagram" className="insta-logo" />
       <div className="nav-selection">
-        <p className="nav-item">
-          <HomeIcon style={fontStyle} />
-          Home
-        </p>
-        <p className="nav-item">
-          <SearchIcon style={fontStyle} />
-          Search
-        </p>
-        <p className="nav-item">
-          <ExploreIcon style={fontStyle} />
-          Explore
-        </p>
-        <p className="nav-item">
-          <MessageIcon style={fontStyle} />
-          Messages
-        </p>
-        <p className="nav-item">
-          <FavoriteIcon style={fontStyle} />
-          Notifications
-        </p>
-        <p className="nav-item">
-          <AddBoxIcon style={fontStyle} />
-          Create
-        </p>
+        <NavItem
+          name="Home"
+          Icon={HomeIcon}
+          SelectedIcon={HomeSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <NavItem
+          name="Search"
+          Icon={SearchIcon}
+          SelectedIcon={SearchSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <NavItem
+          name="Explore"
+          Icon={ExploreIcon}
+          SelectedIcon={ExploreSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <NavItem
+          name="Messages"
+          Icon={MessageIcon}
+          SelectedIcon={MessageSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <NavItem
+          name="Notifications"
+          Icon={FavoriteIcon}
+          SelectedIcon={FavoriteSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <NavItem
+          name="Create"
+          Icon={AddBoxIcon}
+          SelectedIcon={AddBoxSelectedIcon}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
         <p className="nav-item">Profile</p>
       </div>
     </div>

@@ -20,17 +20,7 @@
 .nav-selection {
   display: flex;
   flex-direction: column;
-}
-
-.nav-item {
-  font-family: "proximanova_bold";
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  height: 14px;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 .profile-pic {
