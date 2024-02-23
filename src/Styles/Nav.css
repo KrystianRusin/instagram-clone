@@ -1,0 +1,39 @@
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 100;
+  gap: 2rem;
+  height: 100vh;
+  width: 19rem;
+}
+
+.insta-logo {
+  width: 7rem;
+}
+
+.nav-selection {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  font-family: "proximanova_bold";
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  height: 14px;
+  gap: 0.8rem;
+}
+
+.profile-pic {
+  height: 25px;
+  border-radius: 50%;
+}
