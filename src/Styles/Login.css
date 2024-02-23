@@ -1,0 +1,87 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border: 1px solid #dbdbdb;
+  width: 20rem;
+  padding: 3rem;
+}
+
+.input-text {
+  height: 1.75rem;
+  background-color: #f7f5f5;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+.login-button {
+  width: 20rem;
+  height: 2rem;
+  background-color: rgb(53, 121, 234);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.or-line {
+  height: 1px;
+  background-color: #dbdbdb;
+  flex-grow: 1;
+  position: relative;
+  width: 8rem;
+}
+
+.or-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insta-login-logo {
+  width: 15rem;
+}
+
+.alternate-login-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.alternate-login-options a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+.signup-link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #dbdbdb;
+  width: 20rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
