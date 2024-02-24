@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/Login.css";
 import instaLogo from "../../assets/instagram-1.svg";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className="login-container">
       <div className="login-form-container">
         <img src={instaLogo} alt="Instagram" className="insta-login-logo" />
-        <form action="" className="login-form">
+        <form onSubmit={onSubmit} className="login-form">
           <input
             type="text"
             name="username"
             id="username"
             placeholder="Username"
             className="input-text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
@@ -22,6 +42,8 @@ const Login = () => {
             id="password"
             placeholder="Password"
             className="input-text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input type="submit" value="Login" className="login-button" />
         </form>
