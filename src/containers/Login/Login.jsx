@@ -3,7 +3,7 @@ import "../../styles/Login.css";
 import instaLogo from "../../assets/instagram-1.svg";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,11 @@ const Login = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      onLogin(data.user);
+    } else {
+      console.error(data);
+    }
   };
 
   return (
@@ -30,7 +34,7 @@ const Login = () => {
           <input
             type="text"
             name="username"
-            id="username"
+            id="username-login"
             placeholder="Username"
             className="input-text"
             value={username}
@@ -39,7 +43,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
-            id="password"
+            id="password-login"
             placeholder="Password"
             className="input-text"
             value={password}
@@ -62,7 +66,7 @@ const Login = () => {
       </div>
       <div className="signup-link-container">
         <p>
-          Don't have an account? <a href="/">Sign up</a>
+          Don't have an account? <a href="/signup">Sign up</a>
         </p>
       </div>
     </div>

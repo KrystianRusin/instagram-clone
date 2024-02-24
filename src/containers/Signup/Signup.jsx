@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InstagramLogo from "../../assets/instagram-1.svg";
 import "../../styles/Signup.css";
 
-const Signup = () => {
+const Signup = ({ onSignup }) => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
@@ -20,7 +20,11 @@ const Signup = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      onLogin(data.user);
+    } else {
+      console.error(data);
+    }
   };
 
   return (
@@ -79,7 +83,7 @@ const Signup = () => {
       </div>
       <div className="login-link-container">
         <p>
-          Have an account? <a href="/">Log in</a>
+          Have an account? <a href="/login">Log in</a>
         </p>
       </div>
     </div>
