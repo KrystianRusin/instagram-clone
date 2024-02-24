@@ -12,22 +12,22 @@
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--primary-border);
   width: 20rem;
   padding: 3rem;
 }
 
 .input-text {
   height: 1.75rem;
-  background-color: #f7f5f5;
-  border: 1px solid #dbdbdb;
+  background-color: var(--primary-input);
+  border: 1px solid var(--primary-border);
   border-radius: 5px;
 }
 
 .login-button {
   width: 20rem;
   height: 2rem;
-  background-color: rgb(53, 121, 234);
+  background-color: var(--ig-blue);
   color: white;
   border: none;
   border-radius: 5px;
@@ -36,7 +36,7 @@
 
 .or-line {
   height: 1px;
-  background-color: #dbdbdb;
+  background-color: var(--primary-border);
   flex-grow: 1;
   position: relative;
   width: 8rem;
@@ -80,7 +80,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--primary-border);
   width: 20rem;
   padding-left: 3rem;
   padding-right: 3rem;

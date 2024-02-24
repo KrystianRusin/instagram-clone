@@ -2,6 +2,7 @@ import { useState } from "react";
 import Nav from "./containers/Nav/Nav";
 import "./App.css";
 import Login from "./containers/Login/Login";
+import Signup from "./containers/Signup/Signup";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Nav />
       </div>
       <Login />
+      <Signup />
     </div>
   );
 }

@@ -1,0 +1,59 @@
+.insta-signup-logo {
+  width: 15rem;
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.intro-p {
+  font-size: 1rem;
+  color: var(--primary-text);
+}
+
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border: 1px solid var(--primary-border);
+  width: 17rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.signup-button {
+  width: 15rem;
+  height: 2rem;
+  background-color: var(--ig-blue);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.terms-of-service {
+  font-size: 0.75rem;
+  color: var(--secondary-text);
+}
+
+.login-link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--primary-border);
+  width: 17rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
