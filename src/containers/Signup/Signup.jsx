@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import InstagramLogo from "../../assets/instagram-1.svg";
 import "../../styles/Signup.css";
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, fullName, username, password }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className="signup-container">
       <div className="signup-form-container">
@@ -13,13 +33,15 @@ const Signup = () => {
           </p>
         </div>
 
-        <form action="" className="signup-form">
+        <form onSubmit={onSubmit} className="signup-form">
           <input
             type="email"
             name="email"
             id="email"
             placeholder="Email"
             className="input-text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="text"
@@ -27,6 +49,8 @@ const Signup = () => {
             id="fullname"
             placeholder="Full Name"
             className="input-text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
           />
           <input
             type="text"
@@ -34,6 +58,8 @@ const Signup = () => {
             id="username"
             placeholder="Username"
             className="input-text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
@@ -41,6 +67,8 @@ const Signup = () => {
             id="password"
             placeholder="Password"
             className="input-text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <p className="terms-of-service">
             By signing up, you agree to our Terms, Privacy Policy and Cookies
