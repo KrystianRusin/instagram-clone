@@ -15,12 +15,17 @@ import AddBoxIcon from "@mui/icons-material/AddBoxOutlined";
 import AddBoxSelectedIcon from "@mui/icons-material/AddBox";
 import NavItem from "../../components/NavItem";
 
-const Nav = () => {
+const Nav = ({ user, setUser }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState(null);
 
   const fontStyle = {
     fontSize: hoveredItem === selectedItem ? 35 : 30,
+  };
+
+  const logoutHandler = () => {
+    sessionStorage.removeItem("user");
+    setUser(null);
   };
 
   return (
@@ -81,7 +86,8 @@ const Nav = () => {
           hoveredItem={hoveredItem}
           setHoveredItem={setHoveredItem}
         />
-        <p className="nav-item">Profile</p>
+        <p className="nav-item">{user.fullName}</p>
+        <button onClick={logoutHandler}>Logout</button>
       </div>
     </div>
   );

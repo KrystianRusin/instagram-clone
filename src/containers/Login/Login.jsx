@@ -20,6 +20,7 @@ const Login = ({ onLogin }) => {
 
     const data = await response.json();
     if (response.ok) {
+      sessionStorage.setItem("user", JSON.stringify(data.user));
       onLogin(data.user);
     } else {
       console.error(data);
