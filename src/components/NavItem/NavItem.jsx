@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/NavItem.css";
+import "../../styles/NavItem.css";
 
 const NavItem = ({
   name,

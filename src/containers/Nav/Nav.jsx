@@ -13,7 +13,7 @@ import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteSelectedIcon from "@mui/icons-material/Favorite";
 import AddBoxIcon from "@mui/icons-material/AddBoxOutlined";
 import AddBoxSelectedIcon from "@mui/icons-material/AddBox";
-import NavItem from "../../components/NavItem";
+import NavItem from "../../components/NavItem/NavItem";
 
 const Nav = ({ user, setUser }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
