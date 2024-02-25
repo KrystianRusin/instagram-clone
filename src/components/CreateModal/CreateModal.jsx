@@ -21,6 +21,7 @@ const createModal = ({ user }) => {
 
       const data = await response.json();
       console.log(data);
+      setComment("");
     } catch (error) {
       console.error("An error occurred while creating the post:", error);
     }
@@ -36,6 +37,7 @@ const createModal = ({ user }) => {
             name="comment"
             id="create-commment"
             placeholder="Comment"
+            value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
           <input type="submit" value="Create" />
