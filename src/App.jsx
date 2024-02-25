@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Nav from "./containers/Nav/Nav";
+import Home from "./containers/Home/Home";
 import "./App.css";
 import Login from "./containers/Login/Login";
 import Signup from "./containers/Signup/Signup";
@@ -12,6 +12,10 @@ import {
 
 function App() {
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+  //TODO: Separate Nav into home component to include feed
+  //TODO: Add profile picture/default picture to user
+  //TODO: User can create posts
 
   return (
     <Router>
@@ -28,7 +32,7 @@ function App() {
           path="/"
           element={
             user ? (
-              <Nav user={user} setUser={setUser} />
+              <Home user={user} setUser={setUser} />
             ) : (
               <Navigate to="/login" />
             )
