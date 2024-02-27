@@ -6,18 +6,16 @@ const createModal = ({ user, createModalHandler }) => {
 
   const createPostHandler = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("user", user._id);
+    formData.append("comment", comment);
+    formData.append("image", image); // add the image file to the form data
+
     try {
       const response = await fetch("http://localhost:5000/posts/create", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: user._id, comment }),
+        body: formData, // send the form data
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
 
       const data = await response.json();
       console.log(data);
