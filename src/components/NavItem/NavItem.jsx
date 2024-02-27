@@ -9,13 +9,19 @@ const NavItem = ({
   setSelectedItem,
   hoveredItem,
   setHoveredItem,
+  onItemClicked,
 }) => {
   const isHoveredOrSelected = hoveredItem === name || selectedItem === name;
 
   return (
     <p
       className="nav-item"
-      onClick={() => setSelectedItem(name)}
+      onClick={() => {
+        setSelectedItem(name);
+        if (onItemClicked) {
+          onItemClicked();
+        }
+      }}
       onMouseEnter={() => setHoveredItem(name)}
       onMouseLeave={() => setHoveredItem(null)}
     >

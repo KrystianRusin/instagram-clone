@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../styles/CreateModal.css";
 
-const createModal = ({ user }) => {
+const createModal = ({ user, createModalHandler }) => {
   const [comment, setComment] = useState("");
 
   const createPostHandler = async (event) => {
@@ -28,20 +28,37 @@ const createModal = ({ user }) => {
   };
 
   return (
-    <div className="create-container">
-      Create new post
-      <div className="form-container">
-        <form onSubmit={createPostHandler}>
-          <input
-            type="text"
-            name="comment"
-            id="create-commment"
-            placeholder="Comment"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <input type="submit" value="Create" />
-        </form>
+    <div
+      className="modal-container"
+      onClick={(e) => {
+        if (e.target.className === "modal-container") {
+          createModalHandler();
+        }
+      }}
+    >
+      <div className="create-container">
+        <div className="create-header">Create new post</div>
+
+        <div className="form-container">
+          <form className="create-form" onSubmit={createPostHandler}>
+            <input
+              type="file"
+              name="image"
+              id="create-image"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <input
+              type="text"
+              name="comment"
+              id="create-commment"
+              placeholder="Comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <input type="submit" value="Create" />
+          </form>
+        </div>
       </div>
     </div>
   );
