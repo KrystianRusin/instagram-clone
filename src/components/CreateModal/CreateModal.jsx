@@ -3,13 +3,14 @@ import "../../styles/CreateModal.css";
 
 const createModal = ({ user, createModalHandler }) => {
   const [comment, setComment] = useState("");
+  const [image, setImage] = useState(null);
 
   const createPostHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("user", user._id);
     formData.append("comment", comment);
-    //formData.append("image", image); // add the image file to the form data
+    formData.append("image", image); // add the image file to the form data
 
     try {
       const response = await fetch("http://localhost:5000/posts/create", {
@@ -36,7 +37,12 @@ const createModal = ({ user, createModalHandler }) => {
     >
       <div className="create-container">
         <div className="create-header">Create new post</div>
-
+        <input
+          type="file"
+          name="image"
+          id="create-image"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
         <div className="form-container">
           <form className="create-form" onSubmit={createPostHandler}>
             <input
