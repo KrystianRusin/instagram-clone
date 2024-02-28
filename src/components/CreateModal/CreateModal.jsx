@@ -9,7 +9,7 @@ const createModal = ({ user, createModalHandler }) => {
     const formData = new FormData();
     formData.append("user", user._id);
     formData.append("comment", comment);
-    formData.append("image", image); // add the image file to the form data
+    //formData.append("image", image); // add the image file to the form data
 
     try {
       const response = await fetch("http://localhost:5000/posts/create", {
@@ -39,13 +39,6 @@ const createModal = ({ user, createModalHandler }) => {
 
         <div className="form-container">
           <form className="create-form" onSubmit={createPostHandler}>
-            <input
-              type="file"
-              name="image"
-              id="create-image"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
             <input
               type="text"
               name="comment"
