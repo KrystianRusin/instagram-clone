@@ -13,7 +13,6 @@ import {
 function App() {
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
 
-  //TODO: Separate Nav into home component to include feed
   //TODO: Add profile picture/default picture to user
   //TODO: User can create posts
 

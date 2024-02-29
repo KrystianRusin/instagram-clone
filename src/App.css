@@ -2,16 +2,3 @@ body {
   padding: 0;
   margin: 0;
 }
-
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.main-content .Nav {
-  position: fixed;
-  left: 0;
-  top: 0;
-}

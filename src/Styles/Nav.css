@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 2rem 1rem;
+  padding-top: 10rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   background-color: #fff;
   box-shadow: 0 0 10px var(--primary-box-shadow);
-  position: fixed;
   z-index: 100;
   gap: 2rem;
   height: 100vh;
