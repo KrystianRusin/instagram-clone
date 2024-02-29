@@ -5,7 +5,7 @@ const PostCard = ({ post }) => {
   return (
     <div className="post-card">
       <img src={post.image} alt="Post-Img" />
-      <p>{post.comment}</p>
+      <p>{post.caption}</p>
     </div>
   );
 };

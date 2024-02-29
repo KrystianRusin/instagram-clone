@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import "../../styles/CreateModal.css";
 
-const createModal = ({ user, createModalHandler }) => {
+const CreateModal = ({ user, createModalHandler }) => {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState(null);
+  const [previewSrc, setPreviewSrc] = useState(null); // state to hold the preview image source
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setImage(acceptedFiles[0]);
+      setPreviewSrc(URL.createObjectURL(acceptedFiles[0])); // create an object URL for the file
+    },
+  });
 
   const createPostHandler = async (event) => {
     event.preventDefault();
@@ -21,8 +31,9 @@ const createModal = ({ user, createModalHandler }) => {
       const data = await response.json();
       console.log(data);
       setCaption("");
+      createModalHandler();
     } catch (error) {
-      console.error("An error occurred while creating the post:", error);
+      alert("An error occurred while creating the post:", error);
     }
   };
 
@@ -37,12 +48,14 @@ const createModal = ({ user, createModalHandler }) => {
     >
       <div className="create-container">
         <div className="create-header">Create new post</div>
-        <input
-          type="file"
-          name="image"
-          id="create-image"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+        <div {...getRootProps()} className="dropzone">
+          <input {...getInputProps()} />
+          {previewSrc ? (
+            <img src={previewSrc} alt="preview" className="preview-image" /> // if there's a preview source, display the image
+          ) : (
+            <p>Drag a picture here, or click to select picture</p> // otherwise, display the dropzone text
+          )}
+        </div>
         <div className="form-container">
           <form className="create-form" onSubmit={createPostHandler}>
             <input
@@ -53,7 +66,11 @@ const createModal = ({ user, createModalHandler }) => {
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
-            <input type="submit" value="Create" />
+            <input
+              type="submit"
+              value="Create"
+              className="create-submit-button"
+            />
           </form>
         </div>
       </div>
@@ -61,4 +78,4 @@ const createModal = ({ user, createModalHandler }) => {
   );
 };
 
-export default createModal;
+export default CreateModal;
