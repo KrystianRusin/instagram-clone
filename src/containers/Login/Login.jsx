@@ -18,6 +18,11 @@ const Login = ({ onLogin }) => {
       body: JSON.stringify({ username, password }),
     });
 
+    if (response.status === 401) {
+      alert("Authentication failed");
+      return;
+    }
+
     const data = await response.json();
     if (response.ok) {
       sessionStorage.setItem("user", JSON.stringify(data.user));
