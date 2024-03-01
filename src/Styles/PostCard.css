@@ -1,5 +1,50 @@
 .post-card {
-  width: 80%; /* Adjust as needed */
+  width: 28rem;
   margin-bottom: 20px;
-  /* Add any other styles you want for the individual posts */
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.post-img {
+  width: 100%;
+  height: 35rem;
+  object-fit: cover;
+  border: 1px solid var(--primary-border);
+}
+
+.post-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.main-post-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.post-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.post-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }

@@ -21,7 +21,7 @@ const Signup = ({ onSignup }) => {
 
     const data = await response.json();
     if (response.ok) {
-      onLogin(data.user);
+      onSignup(data.user);
     } else {
       sessionStorage.setItem("user", JSON.stringify(data.user));
       console.error(data);

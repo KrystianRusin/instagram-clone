@@ -24,7 +24,15 @@
   gap: 1rem;
 }
 
-.profile-pic {
-  height: 25px;
-  border-radius: 50%;
+.nav-profile-img {
+  width: 2rem;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }

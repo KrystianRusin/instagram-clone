@@ -88,7 +88,15 @@ const Nav = ({ user, setUser, createModalHandler }) => {
           setHoveredItem={setHoveredItem}
           onItemClicked={createModalHandler}
         />
-        <p className="nav-item">{user.fullName}</p>
+        <div className="nav-item">
+          <img
+            src={user.profilePic}
+            alt="PLACEHOLDER"
+            className="nav-profile-img"
+          ></img>
+          <p>{user.fullName}</p>
+        </div>
+
         <button onClick={logoutHandler}>Logout</button>
       </div>
     </div>
