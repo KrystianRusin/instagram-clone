@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 10rem;
+  position: fixed;
+  padding-top: 5rem;
   padding-left: 2rem;
   padding-right: 2rem;
   background-color: #fff;
