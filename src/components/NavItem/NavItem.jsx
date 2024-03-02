@@ -16,10 +16,10 @@ const NavItem = ({
   return (
     <p
       className="nav-item"
-      onClick={() => {
+      onClick={(event) => {
         setSelectedItem(name);
         if (onItemClicked) {
-          onItemClicked();
+          onItemClicked(event);
         }
       }}
       onMouseEnter={() => setHoveredItem(name)}
