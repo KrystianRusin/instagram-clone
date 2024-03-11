@@ -9,7 +9,9 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const PostCard = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(post.likes.length);
 
+  //Check if User has liked post, if so, set isLiked to true
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     if (post.likes.includes(user._id)) {
@@ -17,9 +19,10 @@ const PostCard = ({ post }) => {
     }
   }, []);
 
+  //When user clicks like button
   const handleLikeClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    console.log(user);
+    //Send a POST request to the server to like the post
     const response = await fetch("http://localhost:5000/posts/like", {
       method: "POST",
       headers: {
@@ -30,7 +33,7 @@ const PostCard = ({ post }) => {
         userId: user._id,
       }),
     });
-
+    //If the request is successful, set isLiked to the opposite of its current value
     if (response.ok) {
       setIsLiked(!isLiked);
     } else {
@@ -51,6 +54,9 @@ const PostCard = ({ post }) => {
 
       <img src={post.image} alt="Post-Img" className="post-img" />
       <div className="post-footer">
+        <div className="post-likes">
+          <p>{likes} Likes</p>
+        </div>
         <div className="post-actions">
           <div className="main-post-actions">
             <div className="like-button" onClick={handleLikeClick}>
