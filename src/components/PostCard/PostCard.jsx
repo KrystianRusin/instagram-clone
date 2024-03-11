@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/PostCard.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
@@ -9,6 +9,13 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const PostCard = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (post.likes.includes(user._id)) {
+      setIsLiked(true);
+    }
+  }, []);
 
   const handleLikeClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
