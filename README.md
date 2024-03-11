@@ -1,6 +1,6 @@
 # Instagram Clone
 
-A recreation of the popular social media platform Instagram using ReactJS and ExpressJS
+A recreation of the popular social media platform Instagram using ReactJS, ExpressJS, MongoDB and Firebase for image storage
 
 Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 
