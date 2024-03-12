@@ -54,9 +54,6 @@ const PostCard = ({ post, handlePostModal }) => {
 
       <img src={post.image} alt="Post-Img" className="post-img" />
       <div className="post-footer">
-        <div className="post-likes">
-          <p>{likes} Likes</p>
-        </div>
         <div className="post-actions">
           <div className="main-post-actions">
             <div className="like-button" onClick={handleLikeClick}>
@@ -75,6 +72,9 @@ const PostCard = ({ post, handlePostModal }) => {
           <div>
             <BookmarkBorderIcon sx={{ fontSize: "2rem" }} />
           </div>
+        </div>
+        <div className="post-likes">
+          <p>{likes} Likes</p>
         </div>
         <div className="post-caption">
           <img

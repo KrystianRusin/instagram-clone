@@ -12,10 +12,11 @@
 }
 
 .post-modal {
-  max-width: 75%;
+  max-width: 85%;
   height: auto;
   background: white;
   display: flex;
+  border-radius: 5px;
 }
 
 .post-modal-img {
@@ -23,6 +24,23 @@
   height: 100%;
   object-fit: cover;
   border-right: 1px solid var(--primary-border);
+}
+
+.post-modal-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 31rem;
+}
+
+.post-modal-header {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--primary-border);
 }
 
 .nav-profile-img {

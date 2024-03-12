@@ -29,6 +29,12 @@
   width: 100%;
 }
 
+.post-likes {
+  line-height: 0rem;
+  padding: 0;
+  margin: 0;
+}
+
 .main-post-actions {
   display: flex;
   gap: 1rem;
