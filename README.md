@@ -9,6 +9,7 @@ Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 - Login/Signup user authentication
 - Signed in users can create posts
 - User Image upload and storage
+- Users can like posts
 
 ## Features to be implemented
 
