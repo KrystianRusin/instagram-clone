@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
 import CreateModal from "../../components/CreateModal/CreateModal";
 import PostCard from "../../components/PostCard/PostCard";
+import PostModal from "../../components/PostModal/PostModal";
 import "../../styles/Home.css";
 
 const Home = ({ user, setUser }) => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [showPostModal, setShowPostModal] = useState(false);
 
+  //Gather all posts from db to render them on feed (Temporary implementation, will only show followed users posts later)
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -22,6 +25,15 @@ const Home = ({ user, setUser }) => {
     fetchPosts();
   }, []);
 
+  const handlePostModal = () => {
+    if (showPostModal) {
+      setShowPostModal(false);
+    } else {
+      setShowPostModal(true);
+    }
+  };
+
+  //Handler for opening and closing the create post modal
   const createModalHandler = () => {
     console.log("createModalHandler");
     if (openCreateModal) {
@@ -41,12 +53,20 @@ const Home = ({ user, setUser }) => {
         />
       </div>
 
+      {showPostModal ? (
+        <PostModal handlePostModal={handlePostModal} post={post} />
+      ) : null}
+
       {openCreateModal ? (
         <CreateModal user={user} createModalHandler={createModalHandler} />
       ) : null}
       <div className="feed-container">
         {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
+          <PostCard
+            key={post._id}
+            post={post}
+            handlePostModal={handlePostModal}
+          />
         ))}
       </div>
     </div>

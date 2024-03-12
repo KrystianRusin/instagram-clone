@@ -7,7 +7,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, handlePostModal }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(post.likes.length);
 
@@ -67,7 +67,9 @@ const PostCard = ({ post }) => {
               )}
             </div>
             <div>
-              <ModeCommentOutlinedIcon sx={{ fontSize: "2rem" }} />
+              <div className="comment-button" onClick={handlePostModal}>
+                <ModeCommentOutlinedIcon sx={{ fontSize: "2rem" }} />
+              </div>
             </div>
           </div>
           <div>
