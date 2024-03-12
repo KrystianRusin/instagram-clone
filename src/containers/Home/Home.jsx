@@ -9,6 +9,7 @@ const Home = ({ user, setUser }) => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [posts, setPosts] = useState([]);
   const [showPostModal, setShowPostModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   //Gather all posts from db to render them on feed (Temporary implementation, will only show followed users posts later)
   useEffect(() => {
@@ -54,7 +55,7 @@ const Home = ({ user, setUser }) => {
       </div>
 
       {showPostModal ? (
-        <PostModal handlePostModal={handlePostModal} post={post} />
+        <PostModal handlePostModal={handlePostModal} post={selectedPost} />
       ) : null}
 
       {openCreateModal ? (
@@ -65,7 +66,10 @@ const Home = ({ user, setUser }) => {
           <PostCard
             key={post._id}
             post={post}
-            handlePostModal={handlePostModal}
+            handlePostModal={() => {
+              setSelectedPost(post);
+              handlePostModal();
+            }}
           />
         ))}
       </div>
