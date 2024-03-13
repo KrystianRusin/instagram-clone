@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Comment.css";
 
-const Comment = ({ post }) => {
+const Comment = ({ comment }) => {
   return (
     <span className="modal-comment-content">
       <img
@@ -11,8 +11,8 @@ const Comment = ({ post }) => {
       />
       <span className="modal-comment-information">
         <span className="modal-comment-text">
-          <h4>{post.user.username}: </h4>
-          <p>{post.caption}</p>
+          <h4>{comment.user.username}: </h4>
+          <p>{comment.caption}</p>
         </span>
         <p className="time-posted">4m</p>
       </span>

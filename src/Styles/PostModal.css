@@ -34,13 +34,14 @@ p {
 .post-modal-sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 31rem;
+  justify-content: space-between;
+  width: 29rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
 }
 
 .post-modal-header {
-  padding-left: 2rem;
-  padding-right: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -56,7 +57,7 @@ p {
 
 .post-modal-comments-list {
   list-style: none;
-  padding-left: 2rem;
+  padding: 0;
 }
 
 .modal-caption-content {
