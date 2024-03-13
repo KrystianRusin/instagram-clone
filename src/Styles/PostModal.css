@@ -11,6 +11,11 @@
   z-index: 1000;
 }
 
+.post-modal h4,
+p {
+  font-size: 0.9rem;
+}
+
 .post-modal {
   max-width: 85%;
   height: auto;
@@ -45,4 +50,47 @@
 
 .nav-profile-img {
   width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+}
+
+.post-modal-comments-list {
+  list-style: none;
+  padding-left: 2rem;
+}
+
+.modal-caption-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.post-modal-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-caption-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2rem;
+}
+
+.modal-caption-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-posted {
+  font-size: 0.7rem;
+  color: var(--secondary-text);
 }
