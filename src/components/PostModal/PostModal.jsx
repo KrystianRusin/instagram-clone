@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/PostModal.css";
 import Comment from "../Comment/Comment";
 
 const PostModal = ({ handlePostModal, post }) => {
   const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/posts/${post._id}/comment`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setComments(data))
+      .catch((error) => console.log("Error fetching comments:", error));
+    console.log(comments);
+  }, [post._id]);
 
   const createCommentHandler = (event) => {
     event.preventDefault();
@@ -25,6 +39,7 @@ const PostModal = ({ handlePostModal, post }) => {
     } catch (error) {
       alert("An error occurred while creating the comment:", error);
     }
+    setCommentText("");
   };
 
   return (
@@ -61,7 +76,7 @@ const PostModal = ({ handlePostModal, post }) => {
                     </span>
                   </span>
                 </li>
-                {post.comments.map((comment) => (
+                {comments.map((comment) => (
                   <li key={comment._id} className="post-modal-comment">
                     <Comment comment={comment} />
                   </li>

@@ -1,7 +1,7 @@
 .modal-comment-content {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   width: 100%;
 }
@@ -19,14 +19,6 @@
   align-items: center;
   gap: 0.5rem;
   height: 2rem;
-}
-
-.modal-comment-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .time-posted {
