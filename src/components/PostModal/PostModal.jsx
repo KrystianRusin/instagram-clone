@@ -85,14 +85,24 @@ const PostModal = ({ handlePostModal, post }) => {
             </div>
           </div>
           <div>
-            <form action="" onSubmit={createCommentHandler}>
+            <form
+              action=""
+              onSubmit={createCommentHandler}
+              className="comment-form"
+            >
               <input
                 type="text"
+                className="comment-input"
                 placeholder="Add a comment..."
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
               />
-              <input type="submit" value="Post" />
+              <input
+                type="submit"
+                value="Post"
+                className="comment-submit"
+                disabled={commentText == ""}
+              />
             </form>
           </div>
         </div>

@@ -95,3 +95,36 @@ p {
   font-size: 0.7rem;
   color: var(--secondary-text);
 }
+
+.comment-form {
+  width: 100%;
+  border-top: 1px solid var(--primary-border);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.comment-input {
+  border: none;
+  width: 95%;
+  font-size: 0.75rem;
+  height: 1.5rem;
+}
+
+.comment-input:focus {
+  outline-width: 0;
+}
+
+.comment-submit {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ig-blue);
+  font-weight: 600;
+}
+
+.comment-submit:disabled {
+  color: rgb(211, 221, 239);
+  cursor: not-allowed;
+}
