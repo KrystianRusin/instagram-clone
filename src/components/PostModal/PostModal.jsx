@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/PostModal.css";
 import Comment from "../Comment/Comment";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const PostModal = ({ handlePostModal, post }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+  const inputRef = useRef();
 
+  //Fetch comments for the post
   useEffect(() => {
     fetch(`http://localhost:5000/posts/${post._id}/comment`)
       .then((response) => {
@@ -18,6 +24,39 @@ const PostModal = ({ handlePostModal, post }) => {
       .catch((error) => console.log("Error fetching comments:", error));
     console.log(comments);
   }, [post._id]);
+
+  //Check if user has liked the post and if they have set isLiked to true
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (post.likes.includes(user._id)) {
+      setIsLiked(true);
+    }
+  }, []);
+
+  const handleCommentClick = () => {
+    inputRef.current.focus();
+  };
+
+  const handleLikeClick = async () => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    //Send a POST request to the server to like the post
+    const response = await fetch("http://localhost:5000/posts/like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        postId: post._id,
+        userId: user._id,
+      }),
+    });
+    //If the request is successful, set isLiked to the opposite of its current value
+    if (response.ok) {
+      setIsLiked(!isLiked);
+    } else {
+      console.error("An error occurred while liking the post");
+    }
+  };
 
   const createCommentHandler = (event) => {
     event.preventDefault();
@@ -84,7 +123,24 @@ const PostModal = ({ handlePostModal, post }) => {
               </ul>
             </div>
           </div>
-          <div>
+          <div className="post-modal-footer">
+            <div className="main-post-actions">
+              <div className="like-button" onClick={handleLikeClick}>
+                {isLiked ? (
+                  <FavoriteIcon sx={{ fontSize: "1.75rem" }} />
+                ) : (
+                  <FavoriteBorderIcon sx={{ fontSize: "1.75rem" }} />
+                )}
+              </div>
+              <div>
+                <div className="comment-button">
+                  <ModeCommentOutlinedIcon
+                    sx={{ fontSize: "1.75rem" }}
+                    onClick={handleCommentClick}
+                  />
+                </div>
+              </div>
+            </div>
             <form
               action=""
               onSubmit={createCommentHandler}
@@ -96,6 +152,7 @@ const PostModal = ({ handlePostModal, post }) => {
                 placeholder="Add a comment..."
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
+                ref={inputRef}
               />
               <input
                 type="submit"

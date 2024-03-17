@@ -96,9 +96,13 @@ p {
   color: var(--secondary-text);
 }
 
+.post-modal-footer {
+  border-top: 1px solid var(--primary-border);
+  padding-top: 0.5rem;
+}
+
 .comment-form {
   width: 100%;
-  border-top: 1px solid var(--primary-border);
   padding-top: 1rem;
   display: flex;
   justify-content: flex-start;
