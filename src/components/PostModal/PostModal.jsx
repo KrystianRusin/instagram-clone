@@ -9,6 +9,7 @@ const PostModal = ({ handlePostModal, post }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(post.likes.length);
   const inputRef = useRef();
 
   //Fetch comments for the post
@@ -124,7 +125,7 @@ const PostModal = ({ handlePostModal, post }) => {
             </div>
           </div>
           <div className="post-modal-footer">
-            <div className="main-post-actions">
+            <div className="post-modal-actions">
               <div className="like-button" onClick={handleLikeClick}>
                 {isLiked ? (
                   <FavoriteIcon sx={{ fontSize: "1.75rem" }} />
@@ -140,6 +141,9 @@ const PostModal = ({ handlePostModal, post }) => {
                   />
                 </div>
               </div>
+            </div>
+            <div className="post-modal-likes">
+              <p>{likes} Likes</p>
             </div>
             <form
               action=""

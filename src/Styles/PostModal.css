@@ -128,6 +128,20 @@ p {
   font-weight: 600;
 }
 
+.post-modal-likes p {
+  font-size: 0.9rem;
+  height: 1rem;
+  margin: 0.3rem;
+}
+
+.post-modal-actions {
+  display: flex;
+  gap: 1rem;
+  line-height: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
 .comment-submit:disabled {
   color: rgb(211, 221, 239);
   cursor: not-allowed;
