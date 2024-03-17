@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import instaLogo from "../../assets/instagram-1.svg";
 import "../../styles/Nav.css";
 import HomeIcon from "@mui/icons-material/HomeOutlined";
@@ -25,11 +26,21 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [anchorPosition, setAnchorPosition] = useState(null);
 
+  const navigate = useNavigate();
+
   const optionsClickHandler = (event) => {
     setAnchorPosition({
       top: event.currentTarget.offsetTop,
       left: event.currentTarget.offsetLeft,
     });
+  };
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/user/${user._id}`);
   };
 
   const handleClose = () => {
@@ -55,6 +66,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            onItemClicked={handleHomeClick}
           />
           <NavItem
             name="Search"
@@ -102,7 +114,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setHoveredItem={setHoveredItem}
             onItemClicked={createModalHandler}
           />
-          <div className="nav-item">
+          <div className="nav-item" onClick={handleProfileClick}>
             <img
               src={user.profilePic}
               alt="PLACEHOLDER"
