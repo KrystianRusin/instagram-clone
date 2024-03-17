@@ -40,7 +40,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   };
 
   const handleProfileClick = () => {
-    navigate(`/user/${user._id}`);
+    navigate(`/${user.username}`);
   };
 
   const handleClose = () => {

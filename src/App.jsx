@@ -59,7 +59,7 @@ function App() {
               )
             }
           />
-          <Route path="user/:userid" element={<Profile />} />
+          <Route path=":username" element={<Profile />} />
         </Routes>
       </Router>
     </div>
