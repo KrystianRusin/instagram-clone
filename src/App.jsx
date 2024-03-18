@@ -14,6 +14,8 @@ import {
 } from "react-router-dom";
 
 function App() {
+  //TODO: Fix bug where user is not being set in session storage on signup
+
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
   const [openCreateModal, setOpenCreateModal] = useState(false);
 
@@ -30,6 +32,15 @@ function App() {
   return (
     <div className="app-container">
       <Router>
+        {user != null ? (
+          <div className="nav-home-container">
+            <Nav
+              user={user}
+              setUser={setUser}
+              createModalHandler={createModalHandler}
+            />
+          </div>
+        ) : null}
         <Routes>
           <Route
             path="/login"
@@ -44,13 +55,6 @@ function App() {
             element={
               user ? (
                 <div className="main-content-home-container">
-                  <div className="nav-home-container">
-                    <Nav
-                      user={user}
-                      setUser={setUser}
-                      createModalHandler={createModalHandler}
-                    />
-                  </div>
                   {openCreateModal ? (
                     <CreateModal
                       user={user}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { useNavigate } from "react-router-dom";
 import "../../styles/CreateModal.css";
 
 const CreateModal = ({ user, createModalHandler }) => {
@@ -14,6 +15,8 @@ const CreateModal = ({ user, createModalHandler }) => {
       setPreviewSrc(URL.createObjectURL(acceptedFiles[0])); // create an object URL for the file
     },
   });
+
+  const navigate = useNavigate();
 
   const createPostHandler = async (event) => {
     event.preventDefault();
@@ -35,6 +38,7 @@ const CreateModal = ({ user, createModalHandler }) => {
     } catch (error) {
       alert("An error occurred while creating the post:", error);
     }
+    navigate("/");
   };
 
   return (
