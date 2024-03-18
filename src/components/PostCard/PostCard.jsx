@@ -42,49 +42,51 @@ const PostCard = ({ post, handlePostModal }) => {
   };
 
   return (
-    <div className="post-card">
-      <div className="post-header">
-        <img
-          src={post.user.profilePic}
-          alt="PLACEHOLDER"
-          className="nav-profile-img"
-        ></img>
-        <h4>{post.user.username}</h4>
-      </div>
-
-      <img src={post.image} alt="Post-Img" className="post-img" />
-      <div className="post-footer">
-        <div className="post-actions">
-          <div className="main-post-actions">
-            <div className="like-button" onClick={handleLikeClick}>
-              {isLiked ? (
-                <FavoriteIcon sx={{ fontSize: "2rem" }} />
-              ) : (
-                <FavoriteBorderIcon sx={{ fontSize: "2rem" }} />
-              )}
-            </div>
-            <div>
-              <div className="comment-button" onClick={handlePostModal}>
-                <ModeCommentOutlinedIcon sx={{ fontSize: "2rem" }} />
-              </div>
-            </div>
-          </div>
-          <div>
-            <BookmarkBorderIcon sx={{ fontSize: "2rem" }} />
-          </div>
-        </div>
-        <div className="post-likes">
-          <p>{likes} Likes</p>
-        </div>
-        <div className="post-caption">
+    <div className="post-card-wrapper">
+      <div className="post-card">
+        <div className="post-header">
           <img
             src={post.user.profilePic}
             alt="PLACEHOLDER"
             className="nav-profile-img"
           ></img>
-          <p>
-            {post.user.username}: {post.caption}
-          </p>
+          <h4>{post.user.username}</h4>
+        </div>
+
+        <img src={post.image} alt="Post-Img" className="post-img" />
+        <div className="post-footer">
+          <div className="post-actions">
+            <div className="main-post-actions">
+              <div className="like-button" onClick={handleLikeClick}>
+                {isLiked ? (
+                  <FavoriteIcon sx={{ fontSize: "2rem" }} />
+                ) : (
+                  <FavoriteBorderIcon sx={{ fontSize: "2rem" }} />
+                )}
+              </div>
+              <div>
+                <div className="comment-button" onClick={handlePostModal}>
+                  <ModeCommentOutlinedIcon sx={{ fontSize: "2rem" }} />
+                </div>
+              </div>
+            </div>
+            <div>
+              <BookmarkBorderIcon sx={{ fontSize: "2rem" }} />
+            </div>
+          </div>
+          <div className="post-likes">
+            <p>{likes} Likes</p>
+          </div>
+          <div className="post-caption">
+            <img
+              src={post.user.profilePic}
+              alt="PLACEHOLDER"
+              className="nav-profile-img"
+            ></img>
+            <p>
+              {post.user.username}: {post.caption}
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -33,47 +33,49 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form-container">
-        <img src={instaLogo} alt="Instagram" className="insta-login-logo" />
-        <form onSubmit={onSubmit} className="login-form">
-          <input
-            type="text"
-            name="username"
-            id="username-login"
-            placeholder="Username"
-            className="input-text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            name="password"
-            id="password-login"
-            placeholder="Password"
-            className="input-text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input type="submit" value="Login" className="login-button" />
-        </form>
-        <div className="or-container">
-          <div className="or-line"></div>
-          <p>OR</p>
-          <div className="or-line"></div>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-form-container">
+          <img src={instaLogo} alt="Instagram" className="insta-login-logo" />
+          <form onSubmit={onSubmit} className="login-form">
+            <input
+              type="text"
+              name="username"
+              id="username-login"
+              placeholder="Username"
+              className="input-text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              id="password-login"
+              placeholder="Password"
+              className="input-text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input type="submit" value="Login" className="login-button" />
+          </form>
+          <div className="or-container">
+            <div className="or-line"></div>
+            <p>OR</p>
+            <div className="or-line"></div>
+          </div>
+          <div className="alternate-login-options">
+            <a href="" className="facebook-login-link">
+              <FacebookIcon />
+              Log In with Facebook
+            </a>
+            <a href="">Forgot your Password?</a>
+          </div>
         </div>
-        <div className="alternate-login-options">
-          <a href="" className="facebook-login-link">
-            <FacebookIcon />
-            Log In with Facebook
-          </a>
-          <a href="">Forgot your Password?</a>
+        <div className="signup-link-container">
+          <p>
+            Don't have an account? <a href="/signup">Sign up</a>
+          </p>
         </div>
-      </div>
-      <div className="signup-link-container">
-        <p>
-          Don't have an account? <a href="/signup">Sign up</a>
-        </p>
       </div>
     </div>
   );

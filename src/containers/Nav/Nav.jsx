@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instaLogo from "../../assets/instagram-1.svg";
 import "../../styles/Nav.css";
@@ -25,6 +25,10 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState(null);
   const [anchorPosition, setAnchorPosition] = useState(null);
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   const navigate = useNavigate();
 

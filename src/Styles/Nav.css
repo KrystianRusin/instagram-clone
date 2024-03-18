@@ -8,7 +8,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
   background-color: #fff;
-  box-shadow: 0 0 10px var(--primary-box-shadow);
+  border-right: 1px solid var(--primary-border);
   z-index: 100;
   gap: 2rem;
   height: 100vh;

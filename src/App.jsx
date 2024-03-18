@@ -30,16 +30,6 @@ function App() {
   return (
     <div className="app-container">
       <Router>
-        <div className="nav-home-container">
-          <Nav
-            user={user}
-            setUser={setUser}
-            createModalHandler={createModalHandler}
-          />
-        </div>
-        {openCreateModal ? (
-          <CreateModal user={user} createModalHandler={createModalHandler} />
-        ) : null}
         <Routes>
           <Route
             path="/login"
@@ -53,7 +43,22 @@ function App() {
             path="/"
             element={
               user ? (
-                <Home user={user} setUser={setUser} />
+                <div className="main-content-home-container">
+                  <div className="nav-home-container">
+                    <Nav
+                      user={user}
+                      setUser={setUser}
+                      createModalHandler={createModalHandler}
+                    />
+                  </div>
+                  {openCreateModal ? (
+                    <CreateModal
+                      user={user}
+                      createModalHandler={createModalHandler}
+                    />
+                  ) : null}
+                  <Home user={user} setUser={setUser} />
+                </div>
               ) : (
                 <Navigate to="/login" />
               )

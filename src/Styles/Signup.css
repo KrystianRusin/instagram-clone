@@ -1,3 +1,10 @@
+.signup-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .insta-signup-logo {
   width: 15rem;
 }

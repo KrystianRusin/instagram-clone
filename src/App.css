@@ -4,7 +4,7 @@ body {
   height: 100vh;
 }
 
-.app-container {
+.main-content-home-containe {
   display: flex;
   justify-content: space-between;
   width: 100%;
