@@ -14,8 +14,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-  //TODO: Fix bug where user is not being set in session storage on signup
-
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
   const [openCreateModal, setOpenCreateModal] = useState(false);
 

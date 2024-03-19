@@ -26,10 +26,6 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [anchorPosition, setAnchorPosition] = useState(null);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
-
   const navigate = useNavigate();
 
   const optionsClickHandler = (event) => {
@@ -124,7 +120,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
               alt="PLACEHOLDER"
               className="nav-profile-img"
             ></img>
-            <p>{user.fullName}</p>
+            <p>Profile</p>
           </div>
         </div>
         <NavItem

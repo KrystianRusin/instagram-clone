@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/Profile.css";
 
 const Profile = ({ user }) => {
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/users/${user._id}`);
+        const data = await response.json();
+        console.log(data);
+        setFollowers(data.followers);
+        setFollowing(data.following);
+        setPosts(data.posts);
+      } catch (error) {
+        console.log("An error occurred while fetching user data:", error);
+      }
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className="profile-wrapper">
       <div className="profile-container">
@@ -28,16 +48,19 @@ const Profile = ({ user }) => {
 
             <div className="profile-stats">
               <div className="profile-stats-item">
-                <span>0</span> posts
+                <span>{posts.length}</span> posts
               </div>
               <div className="profile-stats-item">
-                <span>0</span> followers
+                <span>{followers.length}</span> followers
               </div>
               <div className="profile-stats-item">
-                <span>0</span> following
+                <span>{following.length}</span> following
               </div>
             </div>
-            <div className="profile-name">{user.fullName}</div>
+            <div className="bio-content">
+              <div className="profile-name">{user.fullName}</div>
+              <div className="profile-bio">{user.bio}</div>
+            </div>
           </div>
         </div>
       </div>
