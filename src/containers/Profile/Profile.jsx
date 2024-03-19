@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/Profile.css";
 
 const Profile = ({ user }) => {
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -12,9 +10,7 @@ const Profile = ({ user }) => {
         const response = await fetch(`http://localhost:5000/users/${user._id}`);
         const data = await response.json();
         console.log(data);
-        setFollowers(data.followers);
-        setFollowing(data.following);
-        setPosts(data.posts);
+        setUserData(data);
       } catch (error) {
         console.log("An error occurred while fetching user data:", error);
       }
@@ -48,18 +44,27 @@ const Profile = ({ user }) => {
 
             <div className="profile-stats">
               <div className="profile-stats-item">
-                <span>{posts.length}</span> posts
+                <span className="profile-data-value">
+                  {userData.posts?.length}
+                </span>{" "}
+                posts
               </div>
               <div className="profile-stats-item">
-                <span>{followers.length}</span> followers
+                <span className="profile-data-value">
+                  {userData.followers?.length}
+                </span>{" "}
+                followers
               </div>
               <div className="profile-stats-item">
-                <span>{following.length}</span> following
+                <span className="profile-data-value">
+                  {userData.following?.length}
+                </span>{" "}
+                following
               </div>
             </div>
             <div className="bio-content">
-              <div className="profile-name">{user.fullName}</div>
-              <div className="profile-bio">{user.bio}</div>
+              <div className="profile-name">{userData.fullName}</div>
+              <div className="profile-bio">{userData.bio}</div>
             </div>
           </div>
         </div>
