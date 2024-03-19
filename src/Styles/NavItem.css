@@ -1,7 +1,6 @@
 .nav-item {
   font-family: "proximanova_bold";
   cursor: pointer;
-  font-size: 20px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -17,4 +16,15 @@
 
 .nav-item:hover {
   background-color: #f0f0f0;
+}
+
+.nav-item-icon {
+  display: flex;
+  align-items: center;
+  font-size: 27px;
+  transition: font-size 1s ease;
+}
+
+.nav-item-icon-hovered {
+  font-size: 32px;
 }

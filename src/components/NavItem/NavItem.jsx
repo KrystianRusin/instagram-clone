@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/NavItem.css";
+import { ClassNames } from "@emotion/react";
 
 const NavItem = ({
   name,
@@ -11,10 +12,8 @@ const NavItem = ({
   setHoveredItem,
   onItemClicked,
 }) => {
-  const isHoveredOrSelected = hoveredItem === name || selectedItem === name;
-
   return (
-    <p
+    <a
       className="nav-item"
       onClick={(event) => {
         setSelectedItem(name);
@@ -22,18 +21,22 @@ const NavItem = ({
           onItemClicked(event);
         }
       }}
-      onMouseEnter={() => setHoveredItem(name)}
-      onMouseLeave={() => setHoveredItem(null)}
+      onMouseEnter={() => {
+        setHoveredItem(name);
+      }}
+      onMouseLeave={() => setHoveredItem(false)}
     >
-      <span>
-        {selectedItem === name ? (
-          <SelectedIcon style={{ fontSize: isHoveredOrSelected ? 35 : 30 }} />
-        ) : (
-          <Icon style={{ fontSize: isHoveredOrSelected ? 35 : 30 }} />
-        )}
+      <span
+        className={`${
+          hoveredItem === name || selectedItem === name
+            ? "nav-item-icon-hovered"
+            : "nav-item-icon"
+        }`}
+      >
+        {selectedItem === name ? <SelectedIcon /> : <Icon />}
       </span>
       <span>{name}</span>
-    </p>
+    </a>
   );
 };
 
