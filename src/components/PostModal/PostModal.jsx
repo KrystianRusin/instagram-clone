@@ -13,7 +13,6 @@ const PostModal = ({ handlePostModal, post }) => {
     post && post.likes ? post.likes.length : 0
   );
   const inputRef = useRef();
-  console.log(post);
 
   //Fetch comments for the post
   useEffect(() => {

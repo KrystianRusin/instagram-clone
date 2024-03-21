@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Profile.css";
 import PostModal from "../../components/PostModal/PostModal";
+import ModeCommentIcon from "@mui/icons-material/ModeComment";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Profile = ({ user, setSelectedPost, handlePostModal }) => {
   const [userData, setUserData] = useState({});
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -79,7 +82,17 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
               className="profile-post-card"
               key={post._id}
               onClick={() => handleProfilePostClick(post)}
+              onMouseEnter={() => setHoveredItem(post)}
+              onMouseLeave={() => setHoveredItem(null)}
             >
+              {hoveredItem !== null && hoveredItem._id === post._id ? (
+                <div className="profile-post-overlay">
+                  <div className="post-overlay-stats">
+                    {hoveredItem.likes.length} <FavoriteIcon />
+                    {hoveredItem.comments.length} <ModeCommentIcon />
+                  </div>
+                </div>
+              ) : null}
               <img src={post.image} alt="post" className="profile-post" />
             </div>
           ))}
