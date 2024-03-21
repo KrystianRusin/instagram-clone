@@ -19,7 +19,7 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
   }, []);
 
   const handleProfilePostClick = (post) => {
-    setSelectedPost(post);
+    setSelectedPost({ ...post, user: userData });
     handlePostModal();
   };
 
