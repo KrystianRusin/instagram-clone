@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Profile.css";
+import PostModal from "../../components/PostModal/PostModal";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, setSelectedPost, handlePostModal }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -9,7 +10,6 @@ const Profile = ({ user }) => {
       try {
         const response = await fetch(`http://localhost:5000/users/${user._id}`);
         const data = await response.json();
-        console.log(data);
         setUserData(data);
       } catch (error) {
         console.log("An error occurred while fetching user data:", error);
@@ -17,6 +17,11 @@ const Profile = ({ user }) => {
     };
     fetchUser();
   }, []);
+
+  const handleProfilePostClick = (post) => {
+    setSelectedPost(post);
+    handlePostModal();
+  };
 
   return (
     <div className="profile-wrapper">
@@ -67,6 +72,17 @@ const Profile = ({ user }) => {
               <div className="profile-bio">{userData.bio}</div>
             </div>
           </div>
+        </div>
+        <div className="profile-posts">
+          {userData.posts?.map((post) => (
+            <div
+              className="profile-post-card"
+              key={post._id}
+              onClick={() => handleProfilePostClick(post)}
+            >
+              <img src={post.image} alt="post" className="profile-post" />
+            </div>
+          ))}
         </div>
       </div>
     </div>

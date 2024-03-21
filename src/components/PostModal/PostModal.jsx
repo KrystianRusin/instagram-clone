@@ -9,8 +9,11 @@ const PostModal = ({ handlePostModal, post }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes] = useState(post.likes.length);
+  const [likes, setLikes] = useState(
+    post && post.likes ? post.likes.length : 0
+  );
   const inputRef = useRef();
+  console.log(post);
 
   //Fetch comments for the post
   useEffect(() => {
