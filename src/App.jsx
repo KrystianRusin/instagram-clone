@@ -7,6 +7,7 @@ import Nav from "./containers/Nav/Nav";
 import CreateModal from "./components/CreateModal/CreateModal";
 import Profile from "./containers/Profile/Profile";
 import PostModal from "./components/PostModal/PostModal";
+import Search from "./containers/Search/Search";
 
 import {
   BrowserRouter as Router,
@@ -94,6 +95,7 @@ function App() {
               />
             }
           />
+          <Route path="search" element={<Search />} />
         </Routes>
       </Router>
     </div>

@@ -43,6 +43,10 @@ const Nav = ({ user, setUser, createModalHandler }) => {
     navigate(`/${user.username}`);
   };
 
+  const handleSearchClick = () => {
+    navigate("/search");
+  };
+
   const handleClose = () => {
     setAnchorPosition(null); // close the menu
   };
@@ -76,6 +80,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            onItemClicked={handleSearchClick}
           />
           <NavItem
             name="Explore"
