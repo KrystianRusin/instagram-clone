@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/Search.css";
+import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,8 +18,7 @@ const Search = () => {
         );
         const data = await response.json();
         setSearchResults(data);
-
-        console.log(data);
+        console.log(searchResults);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +39,7 @@ const Search = () => {
       {searchTerm ? (
         <div className="search-results">
           {searchResults.map((result, index) => (
-            <p key={index}>{result.message}</p>
+            <SearchResultCard key={index} user={result} />
           ))}
         </div>
       ) : null}

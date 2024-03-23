@@ -1,7 +1,7 @@
 import React from "react";
 
-const SearchResultCard = () => {
-  return <div>SearchResultCard</div>;
+const SearchResultCard = ({ user }) => {
+  return <div>{user.username}</div>;
 };
 
 export default SearchResultCard;
