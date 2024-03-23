@@ -6,4 +6,18 @@
   justify-content: flex-start;
   align-items: center;
   padding: 5rem;
+  gap: 2rem;
+}
+
+.search-title {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.search-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
 }

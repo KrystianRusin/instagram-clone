@@ -30,12 +30,15 @@ const Search = () => {
 
   return (
     <div className="search-container">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
+      <div className="search-header-container">
+        <span className="search-title">Search</span>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
       {searchTerm ? (
         <div className="search-results">
           {searchResults.map((result, index) => (

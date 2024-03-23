@@ -54,6 +54,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   const logoutHandler = () => {
     sessionStorage.removeItem("user");
     setUser(null);
+    navigate("/login");
     handleClose(); // close the menu
   };
 
