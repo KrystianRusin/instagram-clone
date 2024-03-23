@@ -12,7 +12,17 @@
   z-index: 100;
   gap: 2rem;
   height: 100vh;
-  width: 19rem;
+  width: 340px;
+  transition: width 0.5s ease;
+}
+
+.nav-container.collapsed {
+  width: 45px;
+}
+
+.insta-logo.collapsed {
+  width: 24px;
+  height: 24px;
 }
 
 .insta-logo {

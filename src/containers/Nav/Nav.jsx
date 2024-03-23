@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instaLogo from "../../assets/instagram-1.svg";
+import instaLogoMini from "../../assets/instagram-logo-mini.png";
 import "../../styles/Nav.css";
 import HomeIcon from "@mui/icons-material/HomeOutlined";
 import HomeSelectedIcon from "@mui/icons-material/Home";
@@ -25,6 +26,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState(null);
   const [anchorPosition, setAnchorPosition] = useState(null);
+  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,6 +47,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
 
   const handleSearchClick = () => {
     navigate("/search");
+    setIsNavbarCollapsed(!isNavbarCollapsed);
   };
 
   const handleClose = () => {
@@ -59,8 +62,14 @@ const Nav = ({ user, setUser, createModalHandler }) => {
   };
 
   return (
-    <div className="nav-container">
-      <img src={instaLogo} alt="Instagram" className="insta-logo" />
+    <div className={`nav-container ${isNavbarCollapsed ? "collapsed" : ""}`}>
+      <div className={`logo-container ${isNavbarCollapsed ? "collapsed" : ""}`}>
+        <img
+          src={isNavbarCollapsed ? instaLogoMini : instaLogo}
+          alt="Instagram"
+          className={`insta-logo ${isNavbarCollapsed ? "collapsed" : ""}`}
+        />
+      </div>
       <div className="nav-selection">
         <div className="main-nav-selection">
           <NavItem
@@ -72,6 +81,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={handleHomeClick}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
           <NavItem
             name="Search"
@@ -82,6 +92,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={handleSearchClick}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
           <NavItem
             name="Explore"
@@ -91,6 +102,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
           <NavItem
             name="Messages"
@@ -100,6 +112,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
           <NavItem
             name="Notifications"
@@ -109,6 +122,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
           <NavItem
             name="Create"
@@ -119,14 +133,18 @@ const Nav = ({ user, setUser, createModalHandler }) => {
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={createModalHandler}
+            isNavbarCollapsed={isNavbarCollapsed}
           />
-          <div className="nav-item" onClick={handleProfileClick}>
+          <div
+            className={`nav-item ${isNavbarCollapsed ? "collapsed" : ""}`}
+            onClick={handleProfileClick}
+          >
             <img
               src={user.profilePic}
               alt="PLACEHOLDER"
               className="nav-profile-img"
             ></img>
-            <p>Profile</p>
+            {!isNavbarCollapsed && <p>Profile</p>}
           </div>
         </div>
         <NavItem
@@ -138,6 +156,7 @@ const Nav = ({ user, setUser, createModalHandler }) => {
           hoveredItem={hoveredItem}
           setHoveredItem={setHoveredItem}
           onItemClicked={optionsClickHandler}
+          isNavbarCollapsed={isNavbarCollapsed}
         />
         <Popover
           open={Boolean(anchorPosition)}
