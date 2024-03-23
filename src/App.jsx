@@ -21,6 +21,7 @@ function App() {
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   //Handler for opening and closing the create post modal
   const createModalHandler = () => {
@@ -44,12 +45,21 @@ function App() {
     <div className="app-container">
       <Router>
         {user != null ? (
-          <div className="nav-home-container">
-            <Nav
-              user={user}
-              setUser={setUser}
-              createModalHandler={createModalHandler}
-            />
+          <div className="sidebar-container">
+            <div
+              className={`nav-home-container ${
+                isSearchOpen ? "collapsed" : ""
+              }`}
+            >
+              <Nav
+                user={user}
+                setUser={setUser}
+                createModalHandler={createModalHandler}
+                isSearchOpen={isSearchOpen}
+                setIsSearchOpen={setIsSearchOpen}
+              />
+            </div>
+            <Search isSearchOpen={isSearchOpen} />
           </div>
         ) : null}
         {showPostModal ? (
@@ -95,7 +105,6 @@ function App() {
               />
             }
           />
-          <Route path="search" element={<Search />} />
         </Routes>
       </Router>
     </div>

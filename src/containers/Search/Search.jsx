@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/Search.css";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 
-const Search = () => {
+const Search = ({ isSearchOpen }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -29,12 +29,13 @@ const Search = () => {
   }, [searchTerm]);
 
   return (
-    <div className="search-container">
+    <div className={`search-container ${isSearchOpen ? "expanded" : ""}`}>
       <div className="search-header-container">
         <span className="search-title">Search</span>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search"
+          className="search-input"
           value={searchTerm}
           onChange={handleSearchChange}
         />

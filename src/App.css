@@ -19,6 +19,17 @@ body {
   height: 100%;
 }
 
-.nav-home-container {
-  width: 19rem;
+.nav-home-container,
+.search-container {
+  transition: width 0.5s ease;
+  width: 100%;
+}
+
+.nav-home-container.collapsed {
+  width: 75px;
+}
+
+.sidebar-container {
+  display: flex;
+  width: 470px;
 }

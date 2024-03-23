@@ -11,11 +11,11 @@ const NavItem = ({
   hoveredItem,
   setHoveredItem,
   onItemClicked,
-  isNavbarCollapsed,
+  isSearchOpen,
 }) => {
   return (
     <a
-      className={`nav-item ${isNavbarCollapsed ? "collapsed" : ""}`}
+      className={`nav-item ${isSearchOpen ? "collapsed" : ""}`}
       onClick={(event) => {
         setSelectedItem(name);
         if (onItemClicked) {
@@ -36,7 +36,7 @@ const NavItem = ({
       >
         {selectedItem === name ? <SelectedIcon /> : <Icon />}
       </span>
-      {!isNavbarCollapsed && <span>{name}</span>}
+      {!isSearchOpen && <span>{name}</span>}
     </a>
   );
 };
