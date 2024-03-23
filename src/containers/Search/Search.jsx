@@ -12,14 +12,20 @@ const Search = () => {
   useEffect(() => {
     const searchUser = async () => {
       try {
-        const response = await fetch(`/api/users/search/${searchTerm}`);
+        const response = await fetch(
+          `http://localhost:5000/users/search/${searchTerm}`
+        );
         const data = await response.json();
         setSearchResults(data);
+
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
     };
-    searchUser();
+    if (searchTerm !== "") {
+      searchUser();
+    }
   }, [searchTerm]);
 
   return (
@@ -30,7 +36,13 @@ const Search = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <div className="search-results">{searchTerm}</div>
+      {searchTerm ? (
+        <div className="search-results">
+          {searchResults.map((result, index) => (
+            <p key={index}>{result.message}</p>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };
