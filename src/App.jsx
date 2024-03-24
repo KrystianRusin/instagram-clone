@@ -33,6 +33,7 @@ function App() {
     }
   };
 
+  //Handler for opening and closing the post modal
   const handlePostModal = () => {
     if (showPostModal) {
       setShowPostModal(false);

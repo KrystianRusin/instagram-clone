@@ -20,7 +20,6 @@ import NavItem from "../../components/NavItem/NavItem";
 
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
-import createModal from "../../components/CreateModal/CreateModal";
 
 const Nav = ({
   user,
@@ -53,7 +52,6 @@ const Nav = ({
   };
 
   const handleSearchClick = () => {
-    navigate("/search");
     setIsSearchOpen(!isSearchOpen);
   };
 

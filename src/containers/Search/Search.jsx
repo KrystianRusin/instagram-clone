@@ -10,6 +10,7 @@ const Search = ({ isSearchOpen }) => {
     setSearchTerm(event.target.value);
   };
 
+  //Search for users based on the search term
   useEffect(() => {
     const searchUser = async () => {
       try {
@@ -18,7 +19,6 @@ const Search = ({ isSearchOpen }) => {
         );
         const data = await response.json();
         setSearchResults(data);
-        console.log(searchResults);
       } catch (error) {
         console.log(error);
       }

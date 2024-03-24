@@ -2,7 +2,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
+  cursor: pointer;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.search-card-container:hover {
+  background-color: var(--primary-input);
 }
 
 .search-card-container img {

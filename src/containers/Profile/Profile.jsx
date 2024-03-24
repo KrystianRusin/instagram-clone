@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Profile.css";
 import PostModal from "../../components/PostModal/PostModal";
+import { useParams } from "react-router-dom";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Profile = ({ user, setSelectedPost, handlePostModal }) => {
   const [userData, setUserData] = useState({});
   const [hoveredItem, setHoveredItem] = useState(null);
+  const { username } = useParams();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/users/${user._id}`);
+        const response = await fetch(`http://localhost:5000/users/${username}`);
         const data = await response.json();
         setUserData(data);
       } catch (error) {
@@ -19,7 +21,7 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
       }
     };
     fetchUser();
-  }, []);
+  }, [username]);
 
   const handleProfilePostClick = (post) => {
     setSelectedPost({ ...post, user: userData });
@@ -32,20 +34,20 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
         <div className="profile-header">
           <div className="profile-avatar">
             <img
-              src={user.profilePic}
+              src={userData.profilePic}
               alt="profile-avatar"
               className="avatar"
             />
           </div>
           <div className="profile-details">
             <div className="profile-actions">
-              <div className="profile-username">{user.username}</div>
-              {sessionStorage.getItem("user") === JSON.stringify(user) ? (
+              <div className="profile-username">{userData.username}</div>
+              {sessionStorage.getItem("user") === JSON.stringify(userData) ? (
                 <button>Edit Profile</button>
               ) : (
                 <button>Follow</button>
               )}
-              {sessionStorage.getItem("user") !== JSON.stringify(user) ? (
+              {sessionStorage.getItem("user") !== JSON.stringify(userData) ? (
                 <button>Message</button>
               ) : null}
             </div>
