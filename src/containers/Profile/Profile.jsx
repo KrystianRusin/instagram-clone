@@ -42,12 +42,14 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
           <div className="profile-details">
             <div className="profile-actions">
               <div className="profile-username">{userData.username}</div>
-              {sessionStorage.getItem("user") === JSON.stringify(userData) ? (
+              {JSON.parse(sessionStorage.getItem("user"))._id ===
+              userData._id ? (
                 <button>Edit Profile</button>
               ) : (
                 <button>Follow</button>
               )}
-              {sessionStorage.getItem("user") !== JSON.stringify(userData) ? (
+              {JSON.parse(sessionStorage.getItem("user"))._id !==
+              userData._id ? (
                 <button>Message</button>
               ) : null}
             </div>
