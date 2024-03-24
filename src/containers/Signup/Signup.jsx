@@ -7,6 +7,7 @@ const Signup = ({ onSignup }) => {
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -25,8 +26,17 @@ const Signup = ({ onSignup }) => {
       sessionStorage.setItem("user", JSON.stringify(data.user));
     } else {
       sessionStorage.setItem("user", JSON.stringify(data.user));
+      setError(data.message);
+      resetForm();
       console.error(data);
     }
+  };
+
+  const resetForm = () => {
+    setEmail("");
+    setFullName("");
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -39,7 +49,7 @@ const Signup = ({ onSignup }) => {
               Sign up to see photos and videos from your friends.
             </p>
           </div>
-
+          {error && <p className="error-message">{error}</p>}
           <form onSubmit={onSubmit} className="signup-form">
             <input
               type="email"

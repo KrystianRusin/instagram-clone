@@ -17,7 +17,10 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+  const storedUser = sessionStorage.getItem("user");
+  const [user, setUser] = useState(
+    storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null
+  );
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
