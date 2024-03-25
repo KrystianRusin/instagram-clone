@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import PostCard from "../../components/PostCard/PostCard";
 
 import "../../styles/Home.css";
@@ -36,6 +37,11 @@ const Home = ({ setSelectedPost, handlePostModal }) => {
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  setSelectedPost: PropTypes.func.isRequired,
+  handlePostModal: PropTypes.func.isRequired,
 };
 
 export default Home;

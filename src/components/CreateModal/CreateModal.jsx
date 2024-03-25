@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +81,13 @@ const CreateModal = ({ user, createModalHandler }) => {
       </div>
     </div>
   );
+};
+
+CreateModal.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  createModalHandler: PropTypes.func.isRequired,
 };
 
 export default CreateModal;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import "../../styles/PostModal.css";
 import Comment from "../Comment/Comment";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -56,6 +57,7 @@ const PostModal = ({ handlePostModal, post }) => {
     //If the request is successful, set isLiked to the opposite of its current value
     if (response.ok) {
       setIsLiked(!isLiked);
+      setLikes(isLiked ? likes - 1 : likes + 1);
     } else {
       console.error("An error occurred while liking the post");
     }
@@ -172,6 +174,20 @@ const PostModal = ({ handlePostModal, post }) => {
       </div>
     </div>
   );
+};
+
+PostModal.propTypes = {
+  handlePostModal: PropTypes.func.isRequired,
+  post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    likes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    user: PropTypes.shape({
+      profilePic: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }).isRequired,
+    image: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PostModal;

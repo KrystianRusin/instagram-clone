@@ -4,6 +4,7 @@
   align-items: flex-start;
   width: 100%;
 }
+
 .feed-container {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "../../styles/Search.css";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 
@@ -49,6 +50,10 @@ const Search = ({ isSearchOpen }) => {
       ) : null}
     </div>
   );
+};
+
+Search.propTypes = {
+  isSearchOpen: PropTypes.bool.isRequired,
 };
 
 export default Search;

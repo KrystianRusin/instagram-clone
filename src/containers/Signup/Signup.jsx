@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import InstagramLogo from "../../assets/instagram-1.svg";
 import "../../styles/Signup.css";
 
@@ -102,6 +103,10 @@ const Signup = ({ onSignup }) => {
       </div>
     </div>
   );
+};
+
+Signup.propTypes = {
+  onSignup: PropTypes.func.isRequired,
 };
 
 export default Signup;

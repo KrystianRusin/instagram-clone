@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "../../styles/PostCard.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const PostCard = ({ post, handlePostModal }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -36,6 +35,7 @@ const PostCard = ({ post, handlePostModal }) => {
     //If the request is successful, set isLiked to the opposite of its current value
     if (response.ok) {
       setIsLiked(!isLiked);
+      setLikes(isLiked ? likes - 1 : likes + 1);
     } else {
       console.error("An error occurred while liking the post");
     }
@@ -91,6 +91,20 @@ const PostCard = ({ post, handlePostModal }) => {
       </div>
     </div>
   );
+};
+
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    likes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    user: PropTypes.shape({
+      profilePic: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }).isRequired,
+    image: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+  }).isRequired,
+  handlePostModal: PropTypes.func.isRequired,
 };
 
 export default PostCard;

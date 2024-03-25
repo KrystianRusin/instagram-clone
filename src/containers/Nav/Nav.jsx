@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import instaLogo from "../../assets/instagram-1.svg";
 import instaLogoMini from "../../assets/instagram-logo-mini.png";
 import "../../styles/Nav.css";
@@ -17,7 +18,6 @@ import AddBoxIcon from "@mui/icons-material/AddBoxOutlined";
 import AddBoxSelectedIcon from "@mui/icons-material/AddBox";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavItem from "../../components/NavItem/NavItem";
-import { useLocation } from "react-router-dom";
 
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
@@ -185,6 +185,17 @@ const Nav = ({
       </div>
     </div>
   );
+};
+
+Nav.propTypes = {
+  user: PropTypes.shape({
+    profilePic: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+  }).isRequired,
+  setUser: PropTypes.func.isRequired,
+  createModalHandler: PropTypes.func.isRequired,
+  isSearchOpen: PropTypes.bool.isRequired,
+  setIsSearchOpen: PropTypes.func.isRequired,
 };
 
 export default Nav;

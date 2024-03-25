@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import "../../styles/Comment.css";
 
 const Comment = ({ comment }) => {
@@ -18,6 +18,16 @@ const Comment = ({ comment }) => {
       </span>
     </span>
   );
+};
+
+Comment.propTypes = {
+  comment: PropTypes.shape({
+    user: PropTypes.shape({
+      profilePic: PropTypes.string,
+      username: PropTypes.string,
+    }),
+    text: PropTypes.string,
+  }).isRequired,
 };
 
 export default Comment;

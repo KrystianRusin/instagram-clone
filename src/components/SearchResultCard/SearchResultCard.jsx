@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../../styles/SearchResultCard.css";
 
 const SearchResultCard = ({ user }) => {
@@ -18,6 +18,14 @@ const SearchResultCard = ({ user }) => {
       </div>
     </a>
   );
+};
+
+SearchResultCard.propTypes = {
+  user: PropTypes.shape({
+    profilePic: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default SearchResultCard;

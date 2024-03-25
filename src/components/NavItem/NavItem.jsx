@@ -1,6 +1,5 @@
-import React from "react";
 import "../../styles/NavItem.css";
-import { ClassNames } from "@emotion/react";
+import PropTypes from "prop-types";
 
 const NavItem = ({
   name,
@@ -39,6 +38,18 @@ const NavItem = ({
       {!isSearchOpen && <span>{name}</span>}
     </a>
   );
+};
+
+NavItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  Icon: PropTypes.elementType.isRequired,
+  SelectedIcon: PropTypes.elementType.isRequired,
+  selectedItem: PropTypes.string.isRequired,
+  setSelectedItem: PropTypes.func.isRequired,
+  hoveredItem: PropTypes.string.isRequired,
+  setHoveredItem: PropTypes.func.isRequired,
+  onItemClicked: PropTypes.func,
+  isSearchOpen: PropTypes.bool.isRequired,
 };
 
 export default NavItem;

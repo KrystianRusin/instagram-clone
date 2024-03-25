@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import "../../styles/Login.css";
 import instaLogo from "../../assets/instagram-1.svg";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -73,12 +74,16 @@ const Login = ({ onLogin }) => {
         </div>
         <div className="signup-link-container">
           <p>
-            Don't have an account? <a href="/signup">Sign up</a>
+            Don&apos;t have an account? <a href="/signup">Sign up</a>
           </p>
         </div>
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default Login;

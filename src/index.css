@@ -3,7 +3,7 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Roboto";
+  font-family: Roboto, sans-serif;
 
   --secondary-text: rgb(115, 115, 115);
   --primary-text: rgb(38, 38, 38);
@@ -11,7 +11,8 @@
   --ig-blue: rgb(53, 121, 234);
   --primary-input: #f7f5f5;
   --primary-white: #fff;
-  --primary-box-shadow: rgba(0, 0, 0, 0.1);
+  --primary-box-shadow: rgba(0, 0, 0, 10%);
+  --comment-disabled-color: rgb(211, 221, 239);
 }
 
 #root {

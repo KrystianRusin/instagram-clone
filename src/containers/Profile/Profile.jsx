@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "../../styles/Profile.css";
-import PostModal from "../../components/PostModal/PostModal";
 import { useParams } from "react-router-dom";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const Profile = ({ user, setSelectedPost, handlePostModal }) => {
+const Profile = ({ setSelectedPost, handlePostModal }) => {
   const [userData, setUserData] = useState({});
   const [hoveredItem, setHoveredItem] = useState(null);
   const { username } = useParams();
@@ -104,6 +104,15 @@ const Profile = ({ user, setSelectedPost, handlePostModal }) => {
       </div>
     </div>
   );
+};
+
+Profile.propTypes = {
+  user: PropTypes.shape({
+    profilePic: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+  }).isRequired,
+  setSelectedPost: PropTypes.func.isRequired,
+  handlePostModal: PropTypes.func.isRequired,
 };
 
 export default Profile;
