@@ -30,7 +30,7 @@ const Nav = ({
   setIsSearchOpen,
 }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState("");
   const [anchorPosition, setAnchorPosition] = useState(null);
 
   const navigate = useNavigate();

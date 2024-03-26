@@ -4,28 +4,99 @@ import "../../styles/Profile.css";
 import { useParams } from "react-router-dom";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import updateSessionStorage from "../../util/sessionStorage";
 
 const Profile = ({ setSelectedPost, handlePostModal }) => {
   const [userData, setUserData] = useState({});
   const [hoveredItem, setHoveredItem] = useState(null);
   const { username } = useParams();
+  const [currUser, setCurrUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+  console.log(currUser);
+  //change this to comapre if user is on following list
+  const [isFollowing, setIsFollowing] = useState();
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/users/${username}`);
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.log("An error occurred while fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/users/${username}`);
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.log("An error occurred while fetching user data:", error);
-      }
-    };
     fetchUser();
   }, [username]);
+
+  useEffect(() => {
+    if (
+      currUser &&
+      currUser.following &&
+      currUser.following.includes(userData._id)
+    ) {
+      setIsFollowing(true);
+    } else {
+      setIsFollowing(false);
+    }
+  }, [userData, currUser]);
 
   const handleProfilePostClick = (post) => {
     setSelectedPost({ ...post, user: userData });
     handlePostModal();
+  };
+  const handleFollow = () => {
+    const updatedFollowers = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/users/${userData._id}/follow`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ followerId: currUser._id }),
+          }
+        );
+        const { user, follower } = await response.json();
+        setUserData(user);
+        const updatedCurrUser = await updateSessionStorage();
+        setCurrUser(updatedCurrUser);
+        setIsFollowing(updatedCurrUser.following.includes(userData._id));
+        fetchUser();
+      } catch (error) {
+        console.log("An error occurred while updating followers:", error);
+      }
+    };
+    updatedFollowers();
+  };
+
+  const handleUnFollow = () => {
+    const updatedFollowers = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/users/${userData._id}/unfollow`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ followerId: currUser._id }),
+          }
+        );
+        const { user, follower } = await response.json();
+        setUserData(user);
+        const updatedCurrUser = await updateSessionStorage();
+        setCurrUser(updatedCurrUser);
+        setIsFollowing(updatedCurrUser.following.includes(userData._id));
+        fetchUser();
+      } catch (error) {
+        console.log("An error occurred while updating followers:", error);
+      }
+    };
+    updatedFollowers();
   };
 
   return (
@@ -45,8 +116,10 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
               {JSON.parse(sessionStorage.getItem("user"))._id ===
               userData._id ? (
                 <button>Edit Profile</button>
+              ) : isFollowing ? (
+                <button onClick={handleUnFollow}>Unfollow</button>
               ) : (
-                <button>Follow</button>
+                <button onClick={handleFollow}>Follow</button>
               )}
               {JSON.parse(sessionStorage.getItem("user"))._id !==
               userData._id ? (

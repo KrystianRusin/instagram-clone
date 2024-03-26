@@ -24,7 +24,7 @@ const NavItem = ({
       onMouseEnter={() => {
         setHoveredItem(name);
       }}
-      onMouseLeave={() => setHoveredItem(false)}
+      onMouseLeave={() => setHoveredItem("")}
     >
       <span
         className={`${
