@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import "../../styles/Profile.css";
 import { useParams } from "react-router-dom";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
@@ -13,7 +14,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
   const [currUser, setCurrUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
-  console.log(currUser);
+  const navigate = useNavigate();
   //change this to comapre if user is on following list
   const [isFollowing, setIsFollowing] = useState();
 
@@ -42,6 +43,10 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
       setIsFollowing(false);
     }
   }, [userData, currUser]);
+
+  const handleEditProfile = () => {
+    navigate("/accounts/edit");
+  };
 
   const handleProfilePostClick = (post) => {
     setSelectedPost({ ...post, user: userData });
@@ -115,7 +120,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
               <div className="profile-username">{userData.username}</div>
               {JSON.parse(sessionStorage.getItem("user"))._id ===
               userData._id ? (
-                <button>Edit Profile</button>
+                <button onClick={handleEditProfile}>Edit Profile</button>
               ) : isFollowing ? (
                 <button onClick={handleUnFollow}>Unfollow</button>
               ) : (

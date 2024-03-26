@@ -8,6 +8,7 @@ import CreateModal from "./components/CreateModal/CreateModal";
 import Profile from "./containers/Profile/Profile";
 import PostModal from "./components/PostModal/PostModal";
 import Search from "./containers/Search/Search";
+import EditProfile from "./containers/EditProfile/EditProfile";
 
 import {
   BrowserRouter as Router,
@@ -109,6 +110,7 @@ function App() {
               />
             }
           />
+          <Route path="accounts/edit" element={<EditProfile />} />
         </Routes>
       </Router>
     </div>
