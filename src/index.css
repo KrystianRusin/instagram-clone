@@ -12,6 +12,8 @@
   --primary-input: #f7f5f5;
   --primary-white: #fff;
   --primary-box-shadow: rgba(0, 0, 0, 10%);
+  --ig-primary-button: rgb(0, 149, 246);
+  --ig-primary-button-hover: rgb(24, 119, 242);
   --comment-disabled-color: rgb(211, 221, 239);
 }
 

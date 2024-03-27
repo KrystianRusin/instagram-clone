@@ -1,0 +1,70 @@
+.edit-profile-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.edit-profile-container {
+  height: 90%;
+  min-width: 594px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.edit-picture-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  background-color: var(--primary-input);
+  border-radius: 16px;
+}
+
+.edit-profile-picture-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-user-username-header {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-picture {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.edit-picture-button {
+  width: 122px;
+  height: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: var(--ig-primary-button);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.edit-picture-button:hover {
+  background-color: var(--ig-primary-button-hover);
+  cursor: pointer;
+}
