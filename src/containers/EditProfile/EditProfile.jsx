@@ -1,7 +1,11 @@
 import "../../styles/EditProfile.css";
 
-const EditProfile = () => {
+const EditProfile = ({ setOpenEditProfileModal }) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
+
+  const handleChangePhoto = () => {
+    setOpenEditProfileModal(true);
+  };
 
   return (
     <div className="edit-profile-wrapper">
@@ -21,7 +25,7 @@ const EditProfile = () => {
               <span>{user.fullName}</span>
             </div>
           </div>
-          <button className="edit-picture-button" type="submit">
+          <button className="edit-picture-button" onClick={handleChangePhoto}>
             Change Photo
           </button>
         </div>

@@ -9,6 +9,7 @@ import Profile from "./containers/Profile/Profile";
 import PostModal from "./components/PostModal/PostModal";
 import Search from "./containers/Search/Search";
 import EditProfile from "./containers/EditProfile/EditProfile";
+import ChangePhotoModal from "./components/ChangePhotoModal/ChangePhotoModal";
 
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
     storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null
   );
   const [openCreateModal, setOpenCreateModal] = useState(false);
+  const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -70,6 +72,9 @@ function App() {
         {showPostModal ? (
           <PostModal handlePostModal={handlePostModal} post={selectedPost} />
         ) : null}
+        {openEditProfileModal && (
+          <ChangePhotoModal setOpenEditProfileModal={setOpenEditProfileModal} />
+        )}
         <Routes>
           <Route
             path="/login"
@@ -110,7 +115,12 @@ function App() {
               />
             }
           />
-          <Route path="accounts/edit" element={<EditProfile />} />
+          <Route
+            path="accounts/edit"
+            element={
+              <EditProfile setOpenEditProfileModal={setOpenEditProfileModal} />
+            }
+          />
         </Routes>
       </Router>
     </div>
