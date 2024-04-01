@@ -42,7 +42,7 @@ const EditProfile = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
+      sessionStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
       console.error("An error occurred while updating user data:", error);
     }
