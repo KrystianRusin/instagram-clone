@@ -2,6 +2,9 @@ import { useRef } from "react";
 import "../../styles/ChangePhotoModal.css";
 import defaultAvatar from "../../assets/Default.png";
 
+const defaultAvatarUrl =
+  "https://firebasestorage.googleapis.com/v0/b/instagram-clone-af213.appspot.com/o/Default.png?alt=media";
+
 const ChangePhotoModal = ({ setOpenEditProfileModal, setSelectedFile }) => {
   const fileInput = useRef(null);
 
@@ -19,11 +22,31 @@ const ChangePhotoModal = ({ setOpenEditProfileModal, setSelectedFile }) => {
     fileInput.current.click();
   };
 
-  //Set current photo to default avatar
-  const handleAvatarRemove = async () => {
-    setSelectedFile(defaultAvatar);
+  const urlToFile = async (url, filename, mimeType) => {
+    const response = await fetch(url);
+    const data = await response.blob();
+    return new File([data], filename, { type: mimeType });
   };
 
+  //Set current photo to default avatar
+  const handleAvatarRemove = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/default-avatar");
+      const data = await response.json();
+      console.log(data);
+      const file = await urlToFile(
+        data.defaultAvatarUrl,
+        "Default.png",
+        "image/png"
+      );
+      setSelectedFile(file);
+    } catch (error) {
+      console.error(
+        "An error occurred while getting the default avatar:",
+        error
+      );
+    }
+  };
   return (
     <div className="change-photo-modal-wrapper" onClick={handleCloseModal}>
       <div className="change-photo-modal-container">

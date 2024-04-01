@@ -1,13 +1,13 @@
 import "../../styles/EditProfile.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ChangePhotoModal from "../../components/ChangePhotoModal/ChangePhotoModal";
 
 const EditProfile = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
-  const bioInput = useRef(null);
 
   const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(user.profilePic);
+  const [bio, setBio] = useState(user.bio);
 
   useEffect(() => {
     // Only revoke object URLs for File objects
@@ -23,17 +23,29 @@ const EditProfile = () => {
     setOpenEditProfileModal(true);
   };
 
-  const submitFormhandler = (e) => {
+  const submitFormhandler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     if (selectedFile) {
       formData.append("avatar", selectedFile);
     }
-    formData.append("bio", bioInput.current.value);
+    formData.append("bio", bio);
 
     // Now you can send formData to the server
-    console.log(formData);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/users/${user._id}/update`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("An error occurred while updating user data:", error);
+    }
   };
 
   return (
@@ -77,7 +89,8 @@ const EditProfile = () => {
             id="bio"
             cols="30"
             rows="10"
-            placeholder="Add a bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
           />
           <button type="submit" onClick={submitFormhandler}>
             Submit

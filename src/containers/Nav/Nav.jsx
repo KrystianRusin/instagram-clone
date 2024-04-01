@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import instaLogo from "../../assets/instagram-1.svg";
@@ -23,17 +23,23 @@ import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
 
 const Nav = ({
-  user,
-  setUser,
   createModalHandler,
   isSearchOpen,
   setIsSearchOpen,
+  onLogout,
+  user,
 }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState("");
   const [anchorPosition, setAnchorPosition] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   const optionsClickHandler = (event) => {
     setAnchorPosition({
@@ -61,9 +67,9 @@ const Nav = ({
   };
 
   const logoutHandler = () => {
-    sessionStorage.removeItem("user");
-    setUser(null);
     navigate("/login");
+    sessionStorage.removeItem("user");
+    onLogout(null);
     handleClose(); // close the menu
   };
 
@@ -188,11 +194,6 @@ const Nav = ({
 };
 
 Nav.propTypes = {
-  user: PropTypes.shape({
-    profilePic: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-  }).isRequired,
-  setUser: PropTypes.func.isRequired,
   createModalHandler: PropTypes.func.isRequired,
   isSearchOpen: PropTypes.bool.isRequired,
   setIsSearchOpen: PropTypes.func.isRequired,

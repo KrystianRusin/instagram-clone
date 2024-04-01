@@ -38,6 +38,25 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const getUser = async () => {
+      const userId = sessionStorage.getItem("userId");
+      if (userId) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/users/id/${userId}`
+          );
+          const data = await response.json();
+          sessionStorage.setItem("user", JSON.stringify(data));
+          setUser(data);
+        } catch (error) {
+          console.error("An error occurred while fetching user data:", error);
+        }
+      }
+    };
+
+    getUser();
+  }, []);
   //Handler for opening and closing the post modal
   const handlePostModal = () => {
     if (showPostModal) {
@@ -58,11 +77,11 @@ function App() {
               }`}
             >
               <Nav
-                user={user}
-                setUser={setUser}
                 createModalHandler={createModalHandler}
                 isSearchOpen={isSearchOpen}
                 setIsSearchOpen={setIsSearchOpen}
+                onLogout={setUser}
+                user={user}
               />
             </div>
             <Search isSearchOpen={isSearchOpen} />
