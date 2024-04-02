@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
-import "../../styles/CreateModal.css";
+import "./CreateModal.css";
 
 const CreateModal = ({ user, createModalHandler }) => {
   const [caption, setCaption] = useState("");

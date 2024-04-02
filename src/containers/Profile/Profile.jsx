@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import "../../styles/Profile.css";
+import "./Profile.css";
 import { useParams } from "react-router-dom";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";

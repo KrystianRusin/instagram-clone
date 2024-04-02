@@ -1,4 +1,4 @@
-import "../../styles/NavItem.css";
+import "./NavItem.css";
 import PropTypes from "prop-types";
 
 const NavItem = ({

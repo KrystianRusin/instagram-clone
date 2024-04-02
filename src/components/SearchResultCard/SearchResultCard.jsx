@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../../styles/SearchResultCard.css";
+import "./SearchResultCard.css";
 
 const SearchResultCard = ({ user }) => {
   const navigate = useNavigate();

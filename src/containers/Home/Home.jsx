@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import PostCard from "../../components/PostCard/PostCard";
 
-import "../../styles/Home.css";
+import "./Home.css";
 
 const Home = ({ setSelectedPost, handlePostModal }) => {
   const [posts, setPosts] = useState([]);

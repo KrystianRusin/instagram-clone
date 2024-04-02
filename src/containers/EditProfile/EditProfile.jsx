@@ -1,4 +1,4 @@
-import "../../styles/EditProfile.css";
+import "./EditProfile.css";
 import { useState, useEffect } from "react";
 import ChangePhotoModal from "../../components/ChangePhotoModal/ChangePhotoModal";
 

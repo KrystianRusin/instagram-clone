@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "../../styles/Search.css";
+import "./Search.css";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 
 const Search = ({ isSearchOpen }) => {

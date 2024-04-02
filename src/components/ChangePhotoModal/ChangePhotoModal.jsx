@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "../../styles/ChangePhotoModal.css";
+import "./ChangePhotoModal.css";
 import defaultAvatar from "../../assets/Default.png";
 
 const defaultAvatarUrl =

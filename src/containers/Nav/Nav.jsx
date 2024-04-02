@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import instaLogo from "../../assets/instagram-1.svg";
 import instaLogoMini from "../../assets/instagram-logo-mini.png";
-import "../../styles/Nav.css";
+import "./Nav.css";
 import HomeIcon from "@mui/icons-material/HomeOutlined";
 import HomeSelectedIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/SearchOutlined";

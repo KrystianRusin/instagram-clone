@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "../../styles/Comment.css";
+import "./Comment.css";
 
 const Comment = ({ comment }) => {
   return (
