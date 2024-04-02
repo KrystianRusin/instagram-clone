@@ -27,7 +27,7 @@ const EditProfile = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    if (selectedFile) {
+    if (selectedFile instanceof File) {
       formData.append("avatar", selectedFile);
     }
     formData.append("bio", bio);
