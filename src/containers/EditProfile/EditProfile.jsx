@@ -17,6 +17,7 @@ const EditProfile = () => {
     }
   }, [selectedFile]);
 
+  // Open change photo modal
   const handleChangePhoto = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -26,13 +27,14 @@ const EditProfile = () => {
   const submitFormhandler = async (e) => {
     e.preventDefault();
 
+    // Create formData object and append file if selectedFile is a File object and the bio
     const formData = new FormData();
     if (selectedFile instanceof File) {
       formData.append("avatar", selectedFile);
     }
     formData.append("bio", bio);
 
-    // Now you can send formData to the server
+    // Send formData to the server to update user data in database
     try {
       const response = await fetch(
         `http://localhost:5000/users/${user._id}/update`,
@@ -42,7 +44,9 @@ const EditProfile = () => {
         }
       );
       const data = await response.json();
+      // Update user data in sessionStorage
       sessionStorage.setItem("user", JSON.stringify(data));
+      alert("Profile updated successfully!");
     } catch (error) {
       console.error("An error occurred while updating user data:", error);
     }
@@ -83,16 +87,23 @@ const EditProfile = () => {
               Change Photo
             </button>
           </div>
-          <h3>Bio</h3>
-          <textarea
-            name="bio"
-            id="bio"
-            cols="30"
-            rows="10"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-          <button type="submit" onClick={submitFormhandler}>
+          <div className="bio-container">
+            <h3>Bio</h3>
+            <textarea
+              className="bio-input"
+              name="bio"
+              id="bio"
+              cols="30"
+              rows="10"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={submitFormhandler}
+            className="edit-form-submit-btn"
+          >
             Submit
           </button>
         </form>

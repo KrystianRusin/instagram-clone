@@ -18,6 +18,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
   //change this to comapre if user is on following list
   const [isFollowing, setIsFollowing] = useState();
 
+  // Fetch user data from server used to populate the profile page on username change
   const fetchUser = async () => {
     try {
       const response = await fetch(`http://localhost:5000/users/${username}`);
@@ -32,6 +33,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
     fetchUser();
   }, [username]);
 
+  // Check if the current user is following the user whose profile is being viewed
   useEffect(() => {
     if (
       currUser &&
@@ -52,6 +54,8 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
     setSelectedPost({ ...post, user: userData });
     handlePostModal();
   };
+
+  // Follow and Unfollow functions which update user followers and following lists
   const handleFollow = () => {
     const updatedFollowers = async () => {
       try {

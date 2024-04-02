@@ -68,3 +68,51 @@
   background-color: var(--ig-primary-button-hover);
   cursor: pointer;
 }
+
+.bio-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.bio-input {
+  font-family: Roboto;
+  resize: none;
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid var(--primary-border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.bio-input:focus {
+  outline: none;
+}
+
+.edit-form-submit-btn {
+  width: 253px;
+  height: 44px;
+  background-color: var(--ig-primary-button);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  align-self: flex-end;
+}
+
+.edit-form-submit-btn:hover {
+  background-color: var(--ig-primary-button-hover);
+  cursor: pointer;
+}

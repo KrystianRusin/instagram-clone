@@ -8,6 +8,7 @@ const defaultAvatarUrl =
 const ChangePhotoModal = ({ setOpenEditProfileModal, setSelectedFile }) => {
   const fileInput = useRef(null);
 
+  // Close modal when clicking outside of it or on the cancel button
   const handleCloseModal = (e) => {
     if (
       e.target.classList.contains("change-photo-modal-wrapper") ||
@@ -17,11 +18,13 @@ const ChangePhotoModal = ({ setOpenEditProfileModal, setSelectedFile }) => {
     }
   };
 
+  // Open file input when clicking on the upload photo button
   const handleAvatarUpload = (e) => {
     e.stopPropagation();
     fileInput.current.click();
   };
 
+  // Convert URL to File object
   const urlToFile = async (url, filename, mimeType) => {
     const response = await fetch(url);
     const data = await response.blob();
