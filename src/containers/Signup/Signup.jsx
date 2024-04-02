@@ -13,13 +13,16 @@ const Signup = ({ onSignup }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5000/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, fullName, username, password }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, fullName, username, password }),
+      }
+    );
 
     const data = await response.json();
     if (response.ok) {

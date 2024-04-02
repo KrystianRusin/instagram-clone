@@ -22,16 +22,19 @@ const PostCard = ({ post, handlePostModal }) => {
   const handleLikeClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     //Send a POST request to the server to like the post
-    const response = await fetch("http://localhost:5000/posts/like", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        postId: post._id,
-        userId: user._id,
-      }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/posts/like`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          postId: post._id,
+          userId: user._id,
+        }),
+      }
+    );
     //If the request is successful, set isLiked to the opposite of its current value
     if (response.ok) {
       setIsLiked(!isLiked);

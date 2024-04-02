@@ -34,7 +34,9 @@ const ChangePhotoModal = ({ setOpenEditProfileModal, setSelectedFile }) => {
   //Set current photo to default avatar
   const handleAvatarRemove = async () => {
     try {
-      const response = await fetch("http://localhost:5000/default-avatar");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/default-avatar`
+      );
       const data = await response.json();
       console.log(data);
       const file = await urlToFile(

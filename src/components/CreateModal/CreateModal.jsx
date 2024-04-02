@@ -27,10 +27,13 @@ const CreateModal = ({ user, createModalHandler }) => {
     formData.append("image", image); // add the image file to the form data
 
     try {
-      const response = await fetch("http://localhost:5000/posts/create", {
-        method: "POST",
-        body: formData, // send the form data
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/create`,
+        {
+          method: "POST",
+          body: formData, // send the form data
+        }
+      );
 
       const data = await response.json();
       console.log(data);

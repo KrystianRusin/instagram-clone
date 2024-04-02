@@ -37,7 +37,7 @@ const EditProfile = () => {
     // Send formData to the server to update user data in database
     try {
       const response = await fetch(
-        `http://localhost:5000/users/${user._id}/update`,
+        `${import.meta.env.VITE_API_BASE_URL}/users/${user._id}/update`,
         {
           method: "PUT",
           body: formData,

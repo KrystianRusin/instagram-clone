@@ -11,13 +11,16 @@ const Login = ({ onLogin }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      }
+    );
 
     if (response.status === 401) {
       alert("Authentication failed");

@@ -10,7 +10,6 @@ import PostModal from "./components/PostModal/PostModal";
 import Search from "./containers/Search/Search";
 import EditProfile from "./containers/EditProfile/EditProfile";
 
-//TODO: Set feed to only show posts from users that the current user is following
 //TODO: Add comment preview to postCard
 //TOOD: Messages between users and notifications (websockets)
 
@@ -48,7 +47,7 @@ function App() {
       if (userId) {
         try {
           const response = await fetch(
-            `http://localhost:5000/users/id/${userId}`
+            `${import.meta.env.VITE_API_BASE_URL}/users/id/${userId}`
           );
           const data = await response.json();
           sessionStorage.setItem("user", JSON.stringify(data));

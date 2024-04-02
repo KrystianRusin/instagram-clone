@@ -14,7 +14,7 @@ const Home = ({ setSelectedPost, handlePostModal }) => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/posts/feed/${user._id}`
+          `${import.meta.env.VITE_API_BASE_URL}/posts/feed/${user._id}`
         );
         const data = await response.json();
         setPosts(data);

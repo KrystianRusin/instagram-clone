@@ -16,7 +16,7 @@ const Search = ({ isSearchOpen }) => {
     const searchUser = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/users/search/${searchTerm}`
+          `${import.meta.env.VITE_API_BASE_URL}/users/search/${searchTerm}`
         );
         const data = await response.json();
         setSearchResults(data);

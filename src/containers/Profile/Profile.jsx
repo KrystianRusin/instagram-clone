@@ -21,7 +21,9 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
   // Fetch user data from server used to populate the profile page on username change
   const fetchUser = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/users/${username}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/users/${username}`
+      );
       const data = await response.json();
       setUserData(data);
     } catch (error) {
@@ -60,7 +62,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
     const updatedFollowers = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/users/${userData._id}/follow`,
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userData._id}/follow`,
           {
             method: "PUT",
             headers: {
@@ -86,7 +88,7 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
     const updatedFollowers = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/users/${userData._id}/unfollow`,
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userData._id}/unfollow`,
           {
             method: "PUT",
             headers: {
