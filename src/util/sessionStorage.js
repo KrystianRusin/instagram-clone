@@ -11,7 +11,7 @@ async function updateSessionStorage() {
     );
     const updatedUser = await response.json();
 
-    console.log("Updated user data:");
+    console.log("Updated user data:", updatedUser);
 
     // Update the session storage with the updated user data
     sessionStorage.setItem("user", JSON.stringify(updatedUser));
