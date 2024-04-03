@@ -8,7 +8,7 @@ Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 
 Demo can be view at: https://instagram-clone-eosin-three.vercel.app
 
-When creating an account there is no email verification at the moment so feel free to make up an email address that is of the form <name>@<domain>.<TLD>
+When creating an account there is no email verification at the moment so feel free to make up an email address that is of the form name@domain.TLD
 
 Find and follow a test account called TestAccount, feed is generated based only off users that are followed
 
