@@ -87,6 +87,9 @@ const Profile = ({ setSelectedPost, handlePostModal }) => {
   const handleUnFollow = () => {
     const updatedFollowers = async () => {
       try {
+        console.log(
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userData._id}/unfollow`
+        );
         const response = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/users/${userData._id}/unfollow`,
           {
