@@ -7,7 +7,7 @@ async function updateSessionStorage() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/users/${currUser.username}`
+      `${import.meta.env.VITE_API_BASE_URL}/users/${currUser.username}`
     );
     const updatedUser = await response.json();
 
