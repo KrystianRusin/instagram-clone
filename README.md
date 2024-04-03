@@ -6,6 +6,12 @@ Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 
 ![image](https://github.com/KrystianRusin/instagram-clone/assets/36743674/6b403fa1-2479-476f-8aaf-5e48482b499c)
 
+Demo can be view at: https://instagram-clone-eosin-three.vercel.app
+
+When creating an account there is no email verification at the moment so feel free to make up an email address that is of the form <name>@<domain>.<TLD>
+
+Find a test accoutn created called TestAccount
+
 ## Features
 
 - Login/Signup user authentication
