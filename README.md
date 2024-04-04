@@ -4,7 +4,8 @@ A recreation of the popular social media platform Instagram using ReactJS, Expre
 
 Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 
-![image](https://github.com/KrystianRusin/instagram-clone/assets/36743674/6b403fa1-2479-476f-8aaf-5e48482b499c)
+![image](https://github.com/KrystianRusin/instagram-clone/assets/36743674/890a1efb-0f99-45cb-bfb5-181aa3a70894)
+
 
 Demo can be view at: https://instagram-clone-eosin-three.vercel.app
 
