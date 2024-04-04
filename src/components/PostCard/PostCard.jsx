@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./PostCard.css";
+import createCommentHandler from "../../util/createComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -9,6 +10,7 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 const PostCard = ({ post, handlePostModal }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [commentTotal, setCommentTotal] = useState(0);
+  const [commentText, setCommentText] = useState("");
   const [likes, setLikes] = useState(post.likes.length);
 
   const getCommentTotal = async () => {
@@ -61,6 +63,12 @@ const PostCard = ({ post, handlePostModal }) => {
     }
   };
 
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+    createCommentHandler(post, commentText);
+    setCommentText("");
+  };
+
   return (
     <div className="post-card-wrapper">
       <div className="post-card">
@@ -105,6 +113,21 @@ const PostCard = ({ post, handlePostModal }) => {
           <a onClick={handlePostModal} className="view-comments-link">
             View {commentTotal} Comments
           </a>
+          <form className="comment-form-card" onSubmit={handleCommentSubmit}>
+            <input
+              type="text"
+              className="comment-input-card"
+              placeholder="Add a comment"
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+            <input
+              type="submit"
+              value="Post"
+              className="comment-submit-card"
+              disabled={commentText == ""}
+            />
+          </form>
         </div>
       </div>
     </div>
