@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import "./PostModal.css";
+import createCommentHandler from "../../util/createComment";
 import Comment from "../Comment/Comment";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -26,7 +27,7 @@ const PostModal = ({ handlePostModal, post }) => {
       })
       .then((data) => setComments(data))
       .catch((error) => console.log("Error fetching comments:", error));
-    console.log(comments);
+    console.log("Comments:", comments);
   }, [post._id]);
 
   //Check if user has liked the post and if they have set isLiked to true
@@ -66,26 +67,10 @@ const PostModal = ({ handlePostModal, post }) => {
     }
   };
 
-  const createCommentHandler = (event) => {
+  const handleCommentSubmit = (event) => {
     event.preventDefault();
 
-    const user = JSON.parse(sessionStorage.getItem("user"));
-
-    try {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/comment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: user._id,
-          postId: post._id,
-          text: commentText,
-        }),
-      });
-    } catch (error) {
-      alert("An error occurred while creating the comment:", error);
-    }
+    createCommentHandler(post, commentText);
     setCommentText("");
   };
 
@@ -154,7 +139,7 @@ const PostModal = ({ handlePostModal, post }) => {
             </div>
             <form
               action=""
-              onSubmit={createCommentHandler}
+              onSubmit={handleCommentSubmit}
               className="comment-form"
             >
               <input

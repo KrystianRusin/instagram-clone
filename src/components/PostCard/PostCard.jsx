@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./PostCard.css";
+import createCommentHandler from "../../util/createComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -8,14 +9,32 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 
 const PostCard = ({ post, handlePostModal }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [commentTotal, setCommentTotal] = useState(0);
+  const [commentText, setCommentText] = useState("");
   const [likes, setLikes] = useState(post.likes.length);
 
+  const getCommentTotal = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${post._id}/commentTotal`
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setCommentTotal(data);
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   //Check if User has liked post, if so, set isLiked to true
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     if (post.likes.includes(user._id)) {
       setIsLiked(true);
     }
+    getCommentTotal();
   }, []);
 
   //When user clicks like button
@@ -42,6 +61,12 @@ const PostCard = ({ post, handlePostModal }) => {
     } else {
       console.error("An error occurred while liking the post");
     }
+  };
+
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+    createCommentHandler(post, commentText);
+    setCommentText("");
   };
 
   return (
@@ -81,15 +106,28 @@ const PostCard = ({ post, handlePostModal }) => {
             <p>{likes} Likes</p>
           </div>
           <div className="post-caption">
-            <img
-              src={post.user.profilePic}
-              alt="PLACEHOLDER"
-              className="nav-profile-img"
-            ></img>
             <p>
               {post.user.username}: {post.caption}
             </p>
           </div>
+          <a onClick={handlePostModal} className="view-comments-link">
+            View {commentTotal} Comments
+          </a>
+          <form className="comment-form-card" onSubmit={handleCommentSubmit}>
+            <input
+              type="text"
+              className="comment-input-card"
+              placeholder="Add a comment"
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+            <input
+              type="submit"
+              value="Post"
+              className="comment-submit-card"
+              disabled={commentText == ""}
+            />
+          </form>
         </div>
       </div>
     </div>
