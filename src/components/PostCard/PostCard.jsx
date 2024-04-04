@@ -8,14 +8,31 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 
 const PostCard = ({ post, handlePostModal }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [commentTotal, setCommentTotal] = useState(0);
   const [likes, setLikes] = useState(post.likes.length);
 
+  const getCommentTotal = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${post._id}/commentTotal`
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setCommentTotal(data);
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   //Check if User has liked post, if so, set isLiked to true
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     if (post.likes.includes(user._id)) {
       setIsLiked(true);
     }
+    getCommentTotal();
   }, []);
 
   //When user clicks like button
@@ -81,15 +98,13 @@ const PostCard = ({ post, handlePostModal }) => {
             <p>{likes} Likes</p>
           </div>
           <div className="post-caption">
-            <img
-              src={post.user.profilePic}
-              alt="PLACEHOLDER"
-              className="nav-profile-img"
-            ></img>
             <p>
               {post.user.username}: {post.caption}
             </p>
           </div>
+          <a onClick={handlePostModal} className="view-comments-link">
+            View {commentTotal} Comments
+          </a>
         </div>
       </div>
     </div>

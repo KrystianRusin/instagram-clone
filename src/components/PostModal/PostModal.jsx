@@ -26,7 +26,7 @@ const PostModal = ({ handlePostModal, post }) => {
       })
       .then((data) => setComments(data))
       .catch((error) => console.log("Error fetching comments:", error));
-    console.log(comments);
+    console.log("Comments:", comments);
   }, [post._id]);
 
   //Check if user has liked the post and if they have set isLiked to true
