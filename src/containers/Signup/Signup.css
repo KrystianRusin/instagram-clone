@@ -48,6 +48,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  align-self: center;
 }
 
 .terms-of-service {
