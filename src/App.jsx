@@ -95,15 +95,19 @@ function App() {
         ) : null}
         <Routes>
           <Route
-            path="/login"
-            element={user ? <Navigate to="/" /> : <Login onLogin={setUser} />}
+            path="/"
+            element={
+              user ? <Navigate to="/home" /> : <Login onLogin={setUser} />
+            }
           />
           <Route
             path="/signup"
-            element={user ? <Navigate to="/" /> : <Signup onSignup={setUser} />}
+            element={
+              user ? <Navigate to="/home" /> : <Signup onSignup={setUser} />
+            }
           />
           <Route
-            path="/"
+            path="/home"
             element={
               user ? (
                 <div className="main-content-home-container">

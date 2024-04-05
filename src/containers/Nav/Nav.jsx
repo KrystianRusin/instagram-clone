@@ -50,7 +50,7 @@ const Nav = ({
 
   const handleHomeClick = () => {
     setIsSearchOpen(false);
-    navigate("/");
+    navigate("/home");
   };
 
   const handleProfileClick = () => {
@@ -67,7 +67,7 @@ const Nav = ({
   };
 
   const logoutHandler = () => {
-    navigate("/login");
+    navigate("/");
     sessionStorage.removeItem("user");
     onLogout(null);
     handleClose(); // close the menu
