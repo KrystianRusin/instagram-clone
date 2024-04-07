@@ -1,7 +1,28 @@
-.inbox-container {
+.inbox-sidebar-container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   width: 100%;
   height: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 40px;
+}
+
+.inbox-sidebar-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.inbox-sidebar-username {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.messages-title {
+  font-size: 16px;
+  font-weight: 600;
 }
