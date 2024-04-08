@@ -7,7 +7,7 @@ const Disclaimer = () => {
       <p className="disclaimer-text">
         This application is for demonstration purposes only and not really
         Instagram, please do not use your real login information and do not
-        input/upload and personal or sensitive information.
+        input/upload personal or sensitive information.
       </p>
       <p className="disclaimer-link-text">
         Created by: Krystian Rusin
