@@ -6,6 +6,7 @@ Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 
 ![image](https://github.com/KrystianRusin/instagram-clone/assets/36743674/890a1efb-0f99-45cb-bfb5-181aa3a70894)
 
+NOTE: This application is for demonstration purposes only and not really Instagram, please do not use your real login information and do not input/upload personal or sensitive information.
 
 Demo can be view at: https://www.krystianigclone.com
 
