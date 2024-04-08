@@ -9,8 +9,9 @@ import Profile from "./containers/Profile/Profile";
 import PostModal from "./components/PostModal/PostModal";
 import Search from "./containers/Search/Search";
 import EditProfile from "./containers/EditProfile/EditProfile";
+import Inbox from "./containers/Inbox/Inbox";
+import Disclaimer from "./Disclaimer/Disclaimer";
 
-//TODO: Add comment preview to postCard
 //TOOD: Messages between users and notifications (websockets)
 
 import {
@@ -26,7 +27,7 @@ function App() {
     storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null
   );
   const [openCreateModal, setOpenCreateModal] = useState(false);
-
+  const [navCollapsed, setNavCollapsed] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -71,12 +72,15 @@ function App() {
 
   return (
     <div className="app-container">
+      <Disclaimer />
       <Router>
         {user != null ? (
-          <div className="sidebar-container">
+          <div
+            className={`sidebar-container ${navCollapsed ? "collapsed" : ""}`}
+          >
             <div
               className={`nav-home-container ${
-                isSearchOpen ? "collapsed" : ""
+                navCollapsed ? "collapsed" : ""
               }`}
             >
               <Nav
@@ -85,6 +89,8 @@ function App() {
                 setIsSearchOpen={setIsSearchOpen}
                 onLogout={setUser}
                 user={user}
+                navCollapsed={navCollapsed}
+                setNavCollapsed={setNavCollapsed}
               />
             </div>
             <Search isSearchOpen={isSearchOpen} />
@@ -138,6 +144,14 @@ function App() {
             }
           />
           <Route path="accounts/edit" element={<EditProfile />} />
+          <Route
+            path="/direct/inbox"
+            element={
+              <div className="inbox-main-container">
+                <Inbox />
+              </div>
+            }
+          />
         </Routes>
       </Router>
     </div>

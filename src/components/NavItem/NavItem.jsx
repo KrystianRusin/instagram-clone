@@ -10,11 +10,11 @@ const NavItem = ({
   hoveredItem,
   setHoveredItem,
   onItemClicked,
-  isSearchOpen,
+  navCollapsed,
 }) => {
   return (
     <a
-      className={`nav-item ${isSearchOpen ? "collapsed" : ""}`}
+      className={`nav-item ${navCollapsed ? "collapsed" : ""}`}
       onClick={(event) => {
         setSelectedItem(name);
         if (onItemClicked) {
@@ -35,7 +35,7 @@ const NavItem = ({
       >
         {selectedItem === name ? <SelectedIcon /> : <Icon />}
       </span>
-      {!isSearchOpen && <span>{name}</span>}
+      {!navCollapsed && <span>{name}</span>}
     </a>
   );
 };
@@ -49,7 +49,7 @@ NavItem.propTypes = {
   hoveredItem: PropTypes.string.isRequired,
   setHoveredItem: PropTypes.func.isRequired,
   onItemClicked: PropTypes.func,
-  isSearchOpen: PropTypes.bool.isRequired,
+  navCollapsed: PropTypes.bool.isRequired,
 };
 
 export default NavItem;

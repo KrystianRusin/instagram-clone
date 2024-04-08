@@ -21,13 +21,14 @@ import NavItem from "../../components/NavItem/NavItem";
 
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
-
 const Nav = ({
   createModalHandler,
   isSearchOpen,
   setIsSearchOpen,
   onLogout,
   user,
+  navCollapsed,
+  setNavCollapsed,
 }) => {
   const [selectedItem, setSelectedItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState("");
@@ -50,16 +51,25 @@ const Nav = ({
 
   const handleHomeClick = () => {
     setIsSearchOpen(false);
+    setNavCollapsed(false);
     navigate("/home");
   };
 
   const handleProfileClick = () => {
     setIsSearchOpen(false);
+    setNavCollapsed(false);
     navigate(`/${user.username}`);
   };
 
   const handleSearchClick = () => {
+    setNavCollapsed(true);
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  const handleMessagesClick = () => {
+    setNavCollapsed(true);
+    setIsSearchOpen(false);
+    navigate("/direct/inbox");
   };
 
   const handleClose = () => {
@@ -74,12 +84,12 @@ const Nav = ({
   };
 
   return (
-    <div className={`nav-container ${isSearchOpen ? "collapsed" : ""}`}>
-      <div className={`logo-container ${isSearchOpen ? "collapsed" : ""}`}>
+    <div className={`nav-container ${navCollapsed ? "collapsed" : ""}`}>
+      <div className={`logo-container ${navCollapsed ? "collapsed" : ""}`}>
         <img
-          src={isSearchOpen ? instaLogoMini : instaLogo}
+          src={navCollapsed ? instaLogoMini : instaLogo}
           alt="Instagram"
-          className={`insta-logo ${isSearchOpen ? "collapsed" : ""}`}
+          className={`insta-logo ${navCollapsed ? "collapsed" : ""}`}
         />
       </div>
       <div className="nav-selection">
@@ -93,7 +103,7 @@ const Nav = ({
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={handleHomeClick}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
           />
           <NavItem
             name="Search"
@@ -104,7 +114,7 @@ const Nav = ({
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={handleSearchClick}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
           />
           <NavItem
             name="Explore"
@@ -114,7 +124,7 @@ const Nav = ({
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
           />
           <NavItem
             name="Messages"
@@ -124,7 +134,8 @@ const Nav = ({
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
+            onItemClicked={handleMessagesClick}
           />
           <NavItem
             name="Notifications"
@@ -134,7 +145,7 @@ const Nav = ({
             setSelectedItem={setSelectedItem}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
           />
           <NavItem
             name="Create"
@@ -145,10 +156,10 @@ const Nav = ({
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             onItemClicked={createModalHandler}
-            isSearchOpen={isSearchOpen}
+            navCollapsed={navCollapsed}
           />
           <div
-            className={`nav-item ${isSearchOpen ? "collapsed" : ""}`}
+            className={`nav-item ${navCollapsed ? "collapsed" : ""}`}
             onClick={handleProfileClick}
           >
             <img
@@ -156,7 +167,7 @@ const Nav = ({
               alt="PLACEHOLDER"
               className="nav-profile-img"
             ></img>
-            {!isSearchOpen && <p>Profile</p>}
+            {!navCollapsed && <p>Profile</p>}
           </div>
         </div>
         <NavItem
@@ -168,7 +179,7 @@ const Nav = ({
           hoveredItem={hoveredItem}
           setHoveredItem={setHoveredItem}
           onItemClicked={optionsClickHandler}
-          isSearchOpen={isSearchOpen}
+          navCollapsed={navCollapsed}
         />
         <Popover
           open={Boolean(anchorPosition)}
