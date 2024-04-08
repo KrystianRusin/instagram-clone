@@ -7,7 +7,7 @@ Link to backend: https://github.com/KrystianRusin/instagram-clone-api
 ![image](https://github.com/KrystianRusin/instagram-clone/assets/36743674/890a1efb-0f99-45cb-bfb5-181aa3a70894)
 
 
-Demo can be view at: https://instagram-clone-eosin-three.vercel.app
+Demo can be view at: https://www.krystianigclone.com
 
 When creating an account there is no email verification at the moment so feel free to make up an email address that is of the form name@domain.TLD
 
