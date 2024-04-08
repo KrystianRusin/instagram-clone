@@ -10,6 +10,7 @@ import PostModal from "./components/PostModal/PostModal";
 import Search from "./containers/Search/Search";
 import EditProfile from "./containers/EditProfile/EditProfile";
 import Inbox from "./containers/Inbox/Inbox";
+import Disclaimer from "./Disclaimer/Disclaimer";
 
 //TOOD: Messages between users and notifications (websockets)
 
@@ -71,6 +72,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Disclaimer />
       <Router>
         {user != null ? (
           <div
