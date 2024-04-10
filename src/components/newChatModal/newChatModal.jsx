@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import db from "../../firebase";
 import SearchResultCard from "../SearchResultCard/SearchResultCard";
 import "./newChatModal.css";
 
-const newChatModal = (setShowModal) => {
+const newChatModal = ({ setShowModal, user }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [recipient, setRecipient] = useState(null);
@@ -16,12 +18,28 @@ const newChatModal = (setShowModal) => {
   const handleSetRecipient = (e, result) => {
     e.preventDefault();
     console.log(result._id);
-    setRecipient(result._id);
+    setRecipient(result);
     console.log(recipient === result._id);
   };
 
-  const handleChatSubmit = (e) => {
+  const handleChatSubmit = async (e) => {
     e.preventDefault();
+
+    // Get the user from session storage
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
+    // Create a new chat in Firestore
+    try {
+      await addDoc(collection(db, "chats"), {
+        users: [user, recipient],
+        messages: [],
+        createdAt: new Date(),
+      });
+      console.log("Chat created");
+    } catch (error) {
+      console.error("Error creating chat: ", error);
+    }
+    setShowModal(false);
   };
 
   const handleSearchChange = (e) => {
@@ -63,24 +81,27 @@ const newChatModal = (setShowModal) => {
             </div>
 
             <div className="new-chat-search-results">
-              {searchResults.map((result, index) => (
-                <div key={index} className="new-chat-search-result">
-                  <SearchResultCard user={result} />
-                  <button
-                    type="button "
-                    onClick={(e) => handleSetRecipient(e, result)}
-                    className={`select-recipient-btn ${
-                      recipient === result._id
-                        ? "selected"
-                        : ""
-                        ? "selected"
-                        : ""
-                    }`}
-                  >
-                    Select
-                  </button>
-                </div>
-              ))}
+              {searchResults.map((result, index) => {
+                if (result._id !== user._id) {
+                  return (
+                    <div key={index} className="new-chat-search-result">
+                      <SearchResultCard user={result} />
+                      <button
+                        type="button "
+                        onClick={(e) => handleSetRecipient(e, result)}
+                        className={`select-recipient-btn ${
+                          recipient && recipient._id === result._id
+                            ? "selected"
+                            : ""
+                        }`}
+                      >
+                        Select
+                      </button>
+                    </div>
+                  );
+                }
+                return null;
+              })}
             </div>
           </div>
           <button

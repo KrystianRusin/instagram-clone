@@ -36,7 +36,9 @@ const InboxSidebar = () => {
 
   return (
     <div className="inbox-sidebar-container">
-      {showModal ? <NewChatModal setShowModal={setShowModal} /> : null}
+      {showModal ? (
+        <NewChatModal setShowModal={setShowModal} user={user} />
+      ) : null}
       <div className="inbox-sidebar-header">
         <div className="inbox-sidebar-header-actions">
           <span className="inbox-sidebar-username">
