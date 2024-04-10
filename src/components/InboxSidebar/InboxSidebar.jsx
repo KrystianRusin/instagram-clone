@@ -1,30 +1,60 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import db from "../../firebase";
 import "./InboxSidebar.css";
 import NewChatModal from "../newChatModal/newChatModal";
 
 const InboxSidebar = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
   const [showModal, setShowModal] = useState(false);
+  const [chats, setChats] = useState([]);
 
   //Get the user from session storage
   useEffect(() => {
-    setUser(JSON.parse(sessionStorage.getItem("user")));
-  }, []);
+    if (user) {
+      const q = query(
+        collection(db, "chats"),
+        where(`users.${user._id}`, "==", true)
+      );
+
+      const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+        const chatsData = await Promise.all(
+          querySnapshot.docs.map(async (doc) => {
+            const chatData = doc.data();
+
+            // Fetch the user data for each user ID in the 'users' map
+            const usersData = await Promise.all(
+              Object.keys(chatData.users).map(async (userId) => {
+                const response = await fetch(
+                  `${import.meta.env.VITE_API_BASE_URL}/users/id/${userId}`
+                );
+                const userData = await response.json();
+                return userData;
+              })
+            );
+
+            return {
+              id: doc.id,
+              ...chatData,
+              users: usersData,
+            };
+          })
+        );
+
+        console.log(chatsData);
+        setChats(chatsData);
+      });
+
+      // Clean up the subscription
+      return () => unsubscribe();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("chats: ", chats);
+  }, [chats]);
 
   const handleNewChatClick = async () => {
-    const handleAddDoc = async () => {
-      try {
-        const docRef = await addDoc(collection(db, "myCollection"), {
-          test: "data",
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (error) {
-        console.error("Error adding document: ", error);
-      }
-    };
     setShowModal(true);
   };
 

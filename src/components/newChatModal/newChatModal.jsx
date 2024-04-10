@@ -21,7 +21,6 @@ const newChatModal = ({ setShowModal, user }) => {
     setRecipient(result);
     console.log(recipient === result._id);
   };
-
   const handleChatSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,7 +30,7 @@ const newChatModal = ({ setShowModal, user }) => {
     // Create a new chat in Firestore
     try {
       await addDoc(collection(db, "chats"), {
-        users: [user, recipient],
+        users: { [user._id]: true, [recipient._id]: true },
         messages: [],
         createdAt: new Date(),
       });
