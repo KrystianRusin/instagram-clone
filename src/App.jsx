@@ -148,7 +148,7 @@ function App() {
             path="/direct/inbox"
             element={
               <div className="inbox-main-container">
-                <Inbox />
+                <Inbox setNavCollapsed={setNavCollapsed} />
               </div>
             }
           />

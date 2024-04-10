@@ -3,9 +3,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import db from "../../firebase";
 import "./InboxSidebar.css";
+import NewChatModal from "../newChatModal/newChatModal";
 
 const InboxSidebar = () => {
   const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   //Get the user from session storage
   useEffect(() => {
@@ -23,10 +25,10 @@ const InboxSidebar = () => {
         console.error("Error adding document: ", error);
       }
     };
-
-    handleAddDoc();
+    setShowModal(true);
   };
 
+  //TODO: Create modal to create new chat
   //TODO: Create chat list item component
   //TODO: Create endpoint to retrieve all chats the user is a part of
 
@@ -34,6 +36,7 @@ const InboxSidebar = () => {
 
   return (
     <div className="inbox-sidebar-container">
+      {showModal ? <NewChatModal setShowModal={setShowModal} /> : null}
       <div className="inbox-sidebar-header">
         <div className="inbox-sidebar-header-actions">
           <span className="inbox-sidebar-username">
