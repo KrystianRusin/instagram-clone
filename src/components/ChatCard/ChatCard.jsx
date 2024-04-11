@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import db from "../../firebase";
 import "./ChatCard.css";
 
 const ChatCard = ({ chat, handleChatSelect }) => {
@@ -25,6 +27,24 @@ const ChatCard = ({ chat, handleChatSelect }) => {
     }
   }, [chat]);
 
+  useEffect(() => {
+    const docRef = doc(db, "chats", chat.id);
+
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const chatData = docSnap.data();
+        if (chatData.messages.length > 0) {
+          setLastMessage(chatData.messages[chatData.messages.length - 1]);
+        }
+      } else {
+        console.log("No such document!");
+      }
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, [chat.id, currUser]);
+
   if (!otherUser) {
     return null;
   }
@@ -41,7 +61,7 @@ const ChatCard = ({ chat, handleChatSelect }) => {
           {otherUser ? otherUser.username : null}
         </span>
         <span className="chat-card-last-message">
-          {chat.lastMessage ? chat.lastMessage.text : null}
+          {lastMessage ? lastMessage.text : null}
         </span>
       </div>
     </div>
