@@ -34,6 +34,9 @@
 .messages-container {
   width: 100%;
   height: 766px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .message-input-form {

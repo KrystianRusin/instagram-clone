@@ -1,0 +1,28 @@
+.message-bubble-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.message-bubble-container.right {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: 475px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  color: black;
+  background-color: rgb(239, 239, 239);
+}
+
+.message-bubble-container.right .message-bubble {
+  background-color: var(--ig-blue);
+  margin-right: 15px;
+  margin-left: 0px;
+  color: #fff;
+}

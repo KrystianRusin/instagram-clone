@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc, arrayUnion } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import MessageBubble from "../MessageBubble/MessageBubble";
 import db from "../../firebase";
 import "./ChatRoom.css";
 
@@ -15,14 +16,18 @@ const ChatRoom = () => {
   useEffect(() => {
     const fetchChatData = async () => {
       const docRef = doc(db, "chats", chatId);
-      const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setChatData(docSnap.data());
-      } else {
-        console.log("No such document!");
-      }
-      console.log(chatData);
+      const unsubscribe = onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Updated: ", docSnap.data());
+          setChatData(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      });
+
+      // Clean up the listener when the component unmounts
+      return () => unsubscribe();
     };
 
     fetchChatData();
@@ -46,8 +51,22 @@ const ChatRoom = () => {
     }
   }, [chatData]);
 
-  const handelNewMessage = async (e) => {
-    console.log("Sending message...");
+  const handleNewMessage = async (e) => {
+    e.preventDefault();
+
+    const newMessage = {
+      text: messageInput,
+      userId: user._id,
+      createdAt: new Date(),
+    };
+
+    const docRef = doc(db, "chats", chatId);
+
+    await updateDoc(docRef, {
+      messages: arrayUnion(newMessage),
+    });
+
+    setMessageInput("");
   };
 
   return (
@@ -64,8 +83,15 @@ const ChatRoom = () => {
           </span>
         </div>
       </div>
-      <div className="messages-container"></div>
-      <form className="message-input-form" onSubmit={handelNewMessage}>
+      <div className="messages-container">
+        {chatData &&
+          chatData.messages.map((message, index) => (
+            <div key={index}>
+              <MessageBubble currUser={user._id} message={message} />
+            </div>
+          ))}
+      </div>
+      <form className="message-input-form" onSubmit={handleNewMessage}>
         <input
           type="text"
           placeholder="Type a message..."
