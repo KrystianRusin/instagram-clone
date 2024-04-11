@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import db from "../../firebase";
 import "./InboxSidebar.css";
 import NewChatModal from "../newChatModal/newChatModal";
+import ChatCard from "../ChatCard/ChatCard";
 
 const InboxSidebar = () => {
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
@@ -40,8 +42,6 @@ const InboxSidebar = () => {
             };
           })
         );
-
-        console.log(chatsData);
         setChats(chatsData);
       });
 
@@ -74,11 +74,16 @@ const InboxSidebar = () => {
           <span className="inbox-sidebar-username">
             {user ? user.username : "Loading...."}
           </span>
-          <button onClick={handleNewChatClick}>New Message</button>
+          <div className="create-message-icon" onClick={handleNewChatClick}>
+            <CreateOutlinedIcon />
+          </div>
         </div>
       </div>
-      <div>
+      <div className="chat-card-wrapper">
         <h1 className="messages-title">Messages</h1>
+        {chats.map((chat, index) => {
+          return <ChatCard chat={chat} key={index} />;
+        })}
       </div>
     </div>
   );
