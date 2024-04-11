@@ -145,10 +145,10 @@ function App() {
           />
           <Route path="accounts/edit" element={<EditProfile />} />
           <Route
-            path="/direct/inbox"
+            path="/inbox/*"
             element={
               <div className="inbox-main-container">
-                <Inbox />
+                <Inbox setNavCollapsed={setNavCollapsed} />
               </div>
             }
           />

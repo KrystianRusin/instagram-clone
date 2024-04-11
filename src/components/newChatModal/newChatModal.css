@@ -1,0 +1,132 @@
+.new-chat-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.new-chat-modal-container {
+  width: 550px;
+  height: 600px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.new-chat-modal-header {
+  font-size: 16px;
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.new-chat-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.new-chat-recipient-container {
+  height: 100%;
+  display: flex;
+  flex: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  border-top: 1px solid var(--primary-border);
+  width: 525px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.new-chat-recipient-input-container {
+  width: 525px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-bottom: 1px solid var(--primary-border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.new-chat-recipient-input {
+  width: 475px;
+  height: 40px;
+  border: none;
+}
+
+.new-chat-recipient-input:focus {
+  outline: none;
+}
+
+.new-chat-search-results {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 24px;
+}
+
+.new-chat-search-result:hover {
+  background-color: var(--primary-input);
+}
+
+.new-chat-search-result {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.new-chat-submit {
+  justify-self: flex-end;
+  margin: 1rem;
+  width: 516px;
+  height: 44px;
+  background-color: var(--ig-blue);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.select-recipient-btn {
+  background-color: var(--ig-blue);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  width: 75px;
+  height: 30px;
+  margin-right: 12px;
+}
+
+.select-recipient-btn:hover {
+  background-color: var(--comment-disabled-color);
+  cursor: pointer;
+}
+
+.select-recipient-btn.selected {
+  background-color: var(--comment-disabled-color);
+}
+
+.new-chat-submit:disabled {
+  background-color: var(--comment-disabled-color);
+}

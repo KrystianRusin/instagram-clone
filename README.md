@@ -27,9 +27,7 @@ Find and follow a test account called TestAccount, feed is generated based only 
 
 ## Features to be implemented
 
-- Comment preview (showing 1-2 comments on post card and then displaying all comments on post modal)
 - Comment section pagination
 - Viewing who liked a post
-- Notifications
 - Light and Dark mode
-- User Messaging
+- User Messaging with real-time updates

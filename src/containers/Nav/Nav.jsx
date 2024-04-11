@@ -69,7 +69,7 @@ const Nav = ({
   const handleMessagesClick = () => {
     setNavCollapsed(true);
     setIsSearchOpen(false);
-    navigate("/direct/inbox");
+    navigate("/inbox");
   };
 
   const handleClose = () => {
