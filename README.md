@@ -31,3 +31,6 @@ Find and follow a test account called TestAccount, feed is generated based only 
 - Viewing who liked a post
 - Light and Dark mode
 - User Messaging with real-time updates
+- Facebook OAuth
+- Resetting Password
+- Deleting Posts
