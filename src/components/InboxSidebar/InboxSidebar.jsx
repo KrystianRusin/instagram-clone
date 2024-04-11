@@ -12,7 +12,6 @@ const InboxSidebar = ({ handleChatSelect }) => {
   const [showModal, setShowModal] = useState(false);
   const [chats, setChats] = useState([]);
 
-  //Get the user from session storage
   useEffect(() => {
     if (user) {
       const q = query(
@@ -46,14 +45,9 @@ const InboxSidebar = ({ handleChatSelect }) => {
         setChats(chatsData);
       });
 
-      // Clean up the subscription
       return () => unsubscribe();
     }
   }, [user]);
-
-  useEffect(() => {
-    console.log("chats: ", chats);
-  }, [chats]);
 
   const handleNewChatClick = async () => {
     setShowModal(true);
@@ -76,8 +70,8 @@ const InboxSidebar = ({ handleChatSelect }) => {
           </div>
         </div>
       </div>
+      <h1 className="messages-title">Messages</h1>
       <div className="chat-card-wrapper">
-        <h1 className="messages-title">Messages</h1>
         {chats.map((chat, index) => {
           return (
             <ChatCard
