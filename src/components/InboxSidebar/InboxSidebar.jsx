@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import db from "../../firebase";
 import "./InboxSidebar.css";
 import NewChatModal from "../newChatModal/newChatModal";
 import ChatCard from "../ChatCard/ChatCard";
 
-const InboxSidebar = () => {
+const InboxSidebar = ({ handleChatSelect }) => {
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
   const [showModal, setShowModal] = useState(false);
   const [chats, setChats] = useState([]);
@@ -58,10 +59,6 @@ const InboxSidebar = () => {
     setShowModal(true);
   };
 
-  //TODO: Create modal to create new chat
-  //TODO: Create chat list item component
-  //TODO: Create endpoint to retrieve all chats the user is a part of
-
   //TODO: Create actual messaging system
 
   return (
@@ -82,7 +79,13 @@ const InboxSidebar = () => {
       <div className="chat-card-wrapper">
         <h1 className="messages-title">Messages</h1>
         {chats.map((chat, index) => {
-          return <ChatCard chat={chat} key={index} />;
+          return (
+            <ChatCard
+              chat={chat}
+              key={index}
+              handleChatSelect={handleChatSelect}
+            />
+          );
         })}
       </div>
     </div>

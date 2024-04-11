@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import "./ChatCard.css";
 
-const ChatCard = ({ chat }) => {
+const ChatCard = ({ chat, handleChatSelect }) => {
   const [currUser, setCurrUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
   const [otherUser, setOtherUser] = useState(null);
   const [lastMessage, setLastMessage] = useState(null);
   // Get the current user from session storage
+
+  const handleChatSelectClick = () => {
+    handleChatSelect(chat);
+  };
 
   useEffect(() => {
     setOtherUser(chat.users.find((user) => user._id !== currUser._id));
@@ -26,7 +30,7 @@ const ChatCard = ({ chat }) => {
   }
 
   return (
-    <div className="chat-card-container">
+    <div className="chat-card-container" onClick={handleChatSelectClick}>
       <img
         src={otherUser ? otherUser.profilePic : null}
         alt={otherUser.name}
