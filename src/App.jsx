@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "./containers/Home/Home";
 import "./App.css";
 import Login from "./containers/Login/Login";
@@ -73,6 +74,7 @@ function App() {
   return (
     <div className="app-container">
       <Disclaimer />
+      <Analytics />
       <Router>
         {user != null ? (
           <div
